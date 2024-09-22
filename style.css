@@ -4,6 +4,8 @@ body {
     margin: 0;
     padding: 0;
     position: relative;
+    overflow: hidden; /* Verhindert Scrollen auf der gesamten Seite */
+    height: 100vh; /* Setzt die Höhe auf 100% des Viewport */
 }
 
 .background-container {
@@ -38,51 +40,70 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    height: 100vh; /* Ändert min-height zu height */
     position: relative;
+    overflow: hidden; /* Verhindert Scrollen innerhalb des main-Elements */
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    max-width: 1200px;
+    width: 100%;
+    height: auto; /* Ändert die feste Höhe zu auto */
 }
 
 .card {
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
-    padding: 2rem;
+    padding: 1.5rem;
     box-shadow: 
         0 4px 6px rgba(0, 0, 0, 0.1),
         0 0 20px rgba(255, 255, 255, 0.5),
         0 0 40px rgba(255, 255, 255, 0.3);
-    max-width: 600px;
-    width: 100%;
+    width: calc(33% - 1rem); /* Ändert die Breite, um 3 Karten nebeneinander zu ermöglichen */
+    min-width: 250px; /* Minimale Breite für kleinere Bildschirme */
+    height: auto; /* Ändert die feste Höhe zu auto */
+    max-height: 60vh; /* Begrenzt die maximale Höhe auf 60% der Viewport-Höhe */
+    overflow-y: auto; /* Erlaubt vertikales Scrollen, wenn der Inhalt zu lang ist */
     backdrop-filter: blur(10px);
     position: relative;
-    overflow: hidden;
-    transition: transform 0.3s ease-out, width 0.3s ease-out, height 0.3s ease-out;
+    transition: transform 0.3s ease-out;
     transform-style: preserve-3d;
-    color: #ffffff;
+    color: #ffffff; /* Setze die Textfarbe auf Weiß */
+    display: flex;
+    flex-direction: column;
 }
 
 .card:hover {
-    transform: scale(1.05);
-    width: 110%;
-    height: 110%;
+    transform: scale(1.02); /* Reduzierte Skalierung beim Hover */
 }
 
 .card h2 {
-    color: #ffffff;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    margin-bottom: 1rem;
+    font-size: 1.5rem; /* Kleinere Überschrift */
+    color: #ffffff; /* Weiße Überschrift */
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Optional: Fügt einen leichten Schatten hinzu für bessere Lesbarkeit */
+    margin-bottom: 0.75rem;
+    flex-shrink: 0; /* Verhindert, dass die Überschrift schrumpft */
 }
 
 .card p {
-    color: #f0f0f0;
-    margin-bottom: 0.5rem;
+    font-size: 0.9rem; /* Kleinerer Text */
+    color: #f0f0f0; /* Leicht gedämpftes Weiß für den Paragraphentext */
+    margin-bottom: 0.4rem;
+    flex-shrink: 0; /* Verhindert, dass die Paragraphen schrumpfen */
 }
 
 .hidden-text {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-    color: #ffffff;
-    margin-top: 1rem;
+    color: #ffffff; /* Weiße Farbe für den versteckten Text */
+    margin-top: auto; /* Schiebt den versteckten Text ans Ende der Karte */
+    flex-shrink: 0; /* Verhindert, dass der versteckte Text schrumpft */
+    padding-top: 1rem;
 }
 
 .card:hover .hidden-text {
@@ -90,6 +111,7 @@ main {
     transform: translateY(0);
 }
 
+/* Fügen Sie diese Stile für die Animation hinzu */
 @keyframes typewriter {
     from { width: 0; }
     to { width: 100%; }
@@ -97,17 +119,18 @@ main {
 
 @keyframes blink-caret {
     from, to { border-color: transparent }
-    50% { border-color: #ffffff; }
+    50% { border-color: #ffffff; } /* Ändere die Farbe des blinkenden Cursors auf Weiß */
 }
 
 .typewriter {
     overflow: hidden;
-    border-right: .15em solid #ffffff;
+    border-right: .15em solid #ffffff; /* Ändere die Farbe des blinkenden Cursors auf Weiß */
     white-space: nowrap;
     margin: 0 auto;
     letter-spacing: .15em;
     width: 0;
-    color: #ffffff;
+    color: #ffffff; /* Setze die Textfarbe auf Weiß */
+    font-size: 0.9rem; /* Kleinerer Text für Typewriter-Effekt */
 }
 
 .typewriter:nth-child(1) {
@@ -136,4 +159,113 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+
+/* Anpassen der Scrollbar-Stile für die Karte */
+.card::-webkit-scrollbar {
+    width: 8px;
+}
+
+.card::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.card::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+/* Für Firefox */
+.card {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.1);
+}
+
+.music-card {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.music-card:hover {
+    width: 300px;
+    height: 250px;
+}
+
+.music-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.music-controls {
+    padding: 15px;
+    display: none;
+}
+
+.music-card:hover .music-controls {
+    display: block;
+}
+
+.music-card:hover .music-icon {
+    display: none;
+}
+
+.music-controls h2 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.control-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.control-buttons button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    margin: 0 10px;
+    color: #ffffff;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 5px;
+    background-color: rgba(255, 255, 255, 0.3);
+    margin: 10px 0;
+}
+
+#progress {
+    width: 0;
+    height: 100%;
+    background-color: #ffffff;
+}
+
+#volume {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.music-status {
+    text-align: center;
+    font-style: italic;
+    color: #ffffff;
+    margin-top: 10px;
 }
