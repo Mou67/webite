@@ -1,4 +1,6 @@
 window.addEventListener('load', function() {
+    console.log('Script loaded');
+
     const iframe = document.querySelector('.background-container iframe');
     const cards = document.querySelectorAll('.card');
     const typewriters = document.querySelectorAll('.typewriter');
@@ -84,58 +86,112 @@ window.addEventListener('load', function() {
 
     const music = document.getElementById('background-music');
     const playPauseBtn = document.getElementById('play-pause');
-    const stopBtn = document.getElementById('stop');
-    const volumeControl = document.getElementById('volume');
+    const nextTrackBtn = document.getElementById('next-track');
+    const previousBtn = document.getElementById('previous');
+    const albumArt = document.getElementById('album-art');
     const progressBar = document.getElementById('progress');
-    const musicStatus = document.querySelector('.music-status');
+    const currentTimeEl = document.getElementById('current-time');
+    const durationEl = document.getElementById('duration');
 
-    // Setze die anfängliche Lautstärke auf einen niedrigen Wert (z.B. 0.2)
-    music.volume = 0.2;
-    volumeControl.value = 0.2;
+    const tracks = [
+        { src: "asset/music/Softcore.mp3", name: 'ASTRO', artists: 'Slowboy, IVOXYGEN, zaichkou888', img: 'asset/images/softcore.jpg' },
+        // Add more tracks here
+    ];
 
-    // Starte die Musik automatisch
-    music.play().then(() => {
-        playPauseBtn.textContent = '⏸️';
-        musicStatus.textContent = 'Music is playing';
-    }).catch((error) => {
-        console.error('Autoplay was prevented:', error);
-        // Falls Autoplay verhindert wurde, zeigen wir den Play-Button
-        playPauseBtn.textContent = '▶️';
-        musicStatus.textContent = 'Click to play music';
-    });
+    let currentTrackIndex = 0;
+
+    function loadTrack(index) {
+        console.log('Loading track:', index);
+        const track = tracks[index];
+        music.src = track.src;
+        albumArt.src = track.img;
+        document.querySelector('.music-info h2').textContent = track.name;
+        document.querySelector('.music-info p').textContent = track.artists;
+        music.load();
+    }
+
+    function updatePlayPauseButton() {
+        const playPauseImg = playPauseBtn.querySelector('img');
+        console.log('Updating button, music paused:', music.paused);
+        if (music.paused) {
+            playPauseImg.src = 'asset/images/play.png';
+            playPauseImg.alt = 'Play';
+        } else {
+            playPauseImg.src = 'asset/images/pause.png';
+            playPauseImg.alt = 'Pause';
+        }
+    }
+
+    function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = Math.floor(seconds % 60);
+        return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+    }
 
     playPauseBtn.addEventListener('click', function() {
+        console.log('Play/Pause button clicked, music paused:', music.paused);
         if (music.paused) {
-            music.play();
-            playPauseBtn.textContent = '⏸️';
-            musicStatus.textContent = 'Music is playing';
+            music.play().then(() => {
+                console.log('Music started playing');
+                updatePlayPauseButton();
+            }).catch(error => {
+                console.error('Error playing music:', error);
+            });
         } else {
             music.pause();
-            playPauseBtn.textContent = '▶️';
-            musicStatus.textContent = 'Music is paused';
+            console.log('Music paused');
+            updatePlayPauseButton();
         }
     });
 
-    stopBtn.addEventListener('click', function() {
-        music.pause();
-        music.currentTime = 0;
-        playPauseBtn.textContent = '▶️';
-        musicStatus.textContent = 'Music is stopped';
+    nextTrackBtn.addEventListener('click', function() {
+        console.log('Next track button clicked');
+        // Implementieren Sie hier die Logik für den nächsten Track
     });
 
-    volumeControl.addEventListener('input', function() {
-        music.volume = this.value;
+    previousBtn.addEventListener('click', function() {
+        console.log('Previous button clicked');
+        // Implementieren Sie hier die Logik für den vorherigen Track
     });
 
     music.addEventListener('timeupdate', function() {
+        console.log('Time updated:', music.currentTime);
         const progress = (music.currentTime / music.duration) * 100;
-        progressBar.style.width = progress + '%';
+        progressBar.style.width = `${progress}%`;
+        currentTimeEl.textContent = formatTime(music.currentTime);
     });
 
-    music.addEventListener('error', function() {
-        console.error('Error loading audio file');
-        musicStatus.textContent = 'Error loading audio';
+    music.addEventListener('loadedmetadata', function() {
+        durationEl.textContent = formatTime(music.duration);
     });
 
-    // Rest des bestehenden Codes
+    music.addEventListener('error', function(e) {
+        console.error('Error loading audio:', e);
+        console.error('Error code:', e.target.error.code);
+        console.error('Error message:', e.target.error.message);
+    });
+
+    document.querySelector('.progress-bar').addEventListener('click', function(e) {
+        const clickPosition = e.offsetX / this.offsetWidth;
+        music.currentTime = clickPosition * music.duration;
+    });
+
+    // Initialize the first track
+    loadTrack(currentTrackIndex);
+    updatePlayPauseButton();
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const videoElement = document.getElementById('yourVideoElementId'); // Replace with your video element's ID
+
+        function playVideo() {
+            videoElement.play().catch(error => {
+                console.error('Autoplay was prevented:', error);
+            });
+        }
+
+        // Add event listeners for user interaction
+        document.addEventListener('click', playVideo, { once: true });
+        document.addEventListener('keydown', playVideo, { once: true });
+    });
+
 });
