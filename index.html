@@ -7,6 +7,16 @@
     <link rel="icon" type="image/x-icon" href="asset/favicon.ico">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FFD2JBPYD4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-FFD2JBPYD4');
+    </script>
 </head>
 <body>
     <div class="background-container">
@@ -14,25 +24,33 @@
     </div>
     
     <div class="music-card">
-        <div class="music-icon">🎵</div>
-        <div class="music-controls">
-            <h2>Background Music</h2>
-            <audio id="background-music" src="asset/music/Softcore.mp3" autoplay loop></audio>
-            <div class="control-buttons">
-                <button id="play-pause">▶️</button>
-                <button id="stop">⏹️</button>
-            </div>
-            <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
+        <img id="album-art" src="asset/images/softcore.jpg" alt="Album Art">
+        <div class="music-info">
+            <h2>ASTRO</h2>
+            <p>Slowboy, IVOXYGEN, zaichkou888</p>
+        </div>
+        <div class="timeline">
             <div class="progress-bar">
                 <div id="progress"></div>
             </div>
-            <p class="music-status">Music is paused</p>
+            <div class="time-info">
+                <span id="current-time">0:00</span>
+                <span id="duration">0:00</span>
+            </div>
+        </div>
+        <div class="music-controls">
+            <button id="previous"><img src="asset/images/last_song.png" alt="Previous"></button>
+            <button id="play-pause"><img src="asset/images/play.png" alt="Play/Pause"></button>
+            <button id="next-track"><img src="asset/images/next_song.png" alt="Next"></button>
         </div>
     </div>
+
+    <!-- Add the audio element -->
+    <audio id="background-music" src="asset/music/Softcore.mp3"></audio>
     
     <main>
         <div class="card-container">
-            <div class="card">
+            <div class="card" id="learning-card">
                 <h2>What im currently learning</h2>
                 <p>im currently learning</p>
                 <p>Html, css, javascript</p>
@@ -44,13 +62,12 @@
                     <p class="typewriter">Im a Freelancer and i dont work for people</p>
                 </div>
             </div>
-            <div class="card">
+            <div class="card" id="about-me-card">
                 <h2>About me</h2>
                 <p>Hi im Mou67</p>
                 <p>My Hobbys: Coding, Gaming, Anime, Chilling</p>
                 <p>I dont think that my age is important for you</p>
                 <p>I like coding and like to learn new things</p>
-                <p>im a freelancer and i only work (make things) for myself or my friends</p>
                 <div class="hidden-text">
                     <p class="typewriter">Check out my projects!</p>
                     <p class="typewriter">Always eager to learn more.</p>
