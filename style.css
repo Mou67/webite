@@ -183,89 +183,121 @@ footer {
 
 .music-card {
     position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    background-color: rgba(255, 255, 255, 0.1);
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    background-color: rgba(0, 0, 0, 0.7);
     border-radius: 10px;
     overflow: hidden;
-    transition: all 0.3s ease;
-    z-index: 1000;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 0 20px rgba(255, 255, 255, 0.5);
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
-.music-card:hover {
-    width: 300px;
-    height: 250px;
+#album-art {
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    float: left;
+    margin-right: 10px;
 }
 
-.music-icon {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    cursor: pointer;
+.music-info {
+    margin-left: 70px;
 }
 
-.music-controls {
-    padding: 15px;
-    display: none;
+.music-info h2 {
+    color: #00ff00;
+    font-size: 16px;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.music-card:hover .music-controls {
-    display: block;
-}
-
-.music-card:hover .music-icon {
-    display: none;
-}
-
-.music-controls h2 {
+.music-info p {
     color: #ffffff;
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+    font-size: 14px;
+    margin: 5px 0 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.control-buttons {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 10px;
-}
-
-.control-buttons button {
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    margin: 0 10px;
-    color: #ffffff;
+.timeline {
+    margin-top: 10px;
 }
 
 .progress-bar {
     width: 100%;
-    height: 5px;
+    height: 4px;
     background-color: rgba(255, 255, 255, 0.3);
-    margin: 10px 0;
+    border-radius: 2px;
+    cursor: pointer;
 }
 
 #progress {
     width: 0;
     height: 100%;
-    background-color: #ffffff;
+    background-color: #00ff00;
+    border-radius: 2px;
 }
 
-#volume {
-    width: 100%;
-    margin: 10px 0;
-}
-
-.music-status {
-    text-align: center;
-    font-style: italic;
+.time-info {
+    display: flex;
+    justify-content: space-between;
     color: #ffffff;
-    margin-top: 10px;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.music-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.music-controls button {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 10px;
+    margin: 0 15px;
+}
+
+.music-controls button img {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+}
+
+#play-pause {
+    padding: 15px;
+}
+
+#play-pause img {
+    width: 32px;
+    height: 32px;
+}
+
+.music-controls button:hover img {
+    transform: scale(1.2);
+}
+
+.external-link-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 0 20px rgba(255, 255, 255, 0.5);
+    z-index: 1000;
 }
