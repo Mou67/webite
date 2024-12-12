@@ -1,303 +1,113 @@
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    overflow: hidden; /* Verhindert Scrollen auf der gesamten Seite */
-    height: 100vh; /* Setzt die Höhe auf 100% des Viewport */
-}
-
 .background-container {
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100%;
-    height: 100%;
-    z-index: -1;
+    height: 100vh;
     overflow: hidden;
 }
 
-.background-container iframe {
+#myVideo {
     position: absolute;
-    top: -5%;
-    left: -5%;
-    border: none;
-    width: 110%;
-    height: 110%;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    filter: none;
 }
 
-header {
-    background-color: rgba(114, 114, 114, 0.7);
-    color: #ffffff;
+body {
+    margin: 0;
+    padding: 0;
+    cursor: default;
+}
+
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
-    padding: 1rem;
-    position: relative;
-}
-
-main {
-    padding: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Ändert min-height zu height */
-    position: relative;
-    overflow: hidden; /* Verhindert Scrollen innerhalb des main-Elements */
-}
-
-.card-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 2rem;
-    max-width: 1200px;
-    width: 100%;
-    height: auto; /* Ändert die feste Höhe zu auto */
-}
-
-.card {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 1.5rem;
-    box-shadow: 
-        0 4px 6px rgba(0, 0, 0, 0.1),
-        0 0 20px rgba(255, 255, 255, 0.5),
-        0 0 40px rgba(255, 255, 255, 0.3);
-    width: calc(33% - 1rem); /* Ändert die Breite, um 3 Karten nebeneinander zu ermöglichen */
-    min-width: 250px; /* Minimale Breite für kleinere Bildschirme */
-    height: auto; /* Ändert die feste Höhe zu auto */
-    max-height: 60vh; /* Begrenzt die maximale Höhe auf 60% der Viewport-Höhe */
-    overflow-y: auto; /* Erlaubt vertikales Scrollen, wenn der Inhalt zu lang ist */
+    animation: fadeIn 2s ease-in;
+    background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(10px);
-    position: relative;
-    transition: transform 0.3s ease-out;
-    transform-style: preserve-3d;
-    color: #ffffff; /* Setze die Textfarbe auf Weiß */
-    display: flex;
-    flex-direction: column;
+    padding: 2rem 4rem;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    overflow: hidden;
 }
 
-.card:hover {
-    transform: scale(1.02); /* Reduzierte Skalierung beim Hover */
+.content:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
 }
 
-.card h2 {
-    font-size: 1.5rem; /* Kleinere Überschrift */
-    color: #ffffff; /* Weiße Überschrift */
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Optional: Fügt einen leichten Schatten hinzu für bessere Lesbarkeit */
-    margin-bottom: 0.75rem;
-    flex-shrink: 0; /* Verhindert, dass die Überschrift schrumpft */
-}
-
-.card p {
-    font-size: 0.9rem; /* Kleinerer Text */
-    color: #f0f0f0; /* Leicht gedämpftes Weiß für den Paragraphentext */
-    margin-bottom: 0.4rem;
-    flex-shrink: 0; /* Verhindert, dass die Paragraphen schrumpfen */
-}
-
-.hidden-text {
+.secondary-text {
+    color: white;
+    font-size: 1.5rem;
+    font-family: 'Poppins', sans-serif;
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-    color: #ffffff; /* Weiße Farbe für den versteckten Text */
-    margin-top: auto; /* Schiebt den versteckten Text ans Ende der Karte */
-    flex-shrink: 0; /* Verhindert, dass der versteckte Text schrumpft */
-    padding-top: 1rem;
+    transition: all 0.3s ease;
 }
 
-.card:hover .hidden-text {
+.content:hover .secondary-text {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* Fügen Sie diese Stile für die Animation hinzu */
-@keyframes typewriter {
-    from { width: 0; }
-    to { width: 100%; }
+@font-face {
+    font-family: 'Zanaz';
+    src: url('../fonts/Zanaz-ALL9p.ttf') format('truetype');
 }
 
-@keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: #ffffff; } /* Ändere die Farbe des blinkenden Cursors auf Weiß */
-}
-
-.typewriter {
-    overflow: hidden;
-    border-right: .15em solid #ffffff; /* Ändere die Farbe des blinkenden Cursors auf Weiß */
-    white-space: nowrap;
-    margin: 0 auto;
-    letter-spacing: .15em;
-    width: 0;
-    color: #ffffff; /* Setze die Textfarbe auf Weiß */
-    font-size: 0.9rem; /* Kleinerer Text für Typewriter-Effekt */
-}
-
-.typewriter:nth-child(1) {
-    animation: 
-        typewriter 2s steps(40, end) 0.5s forwards,
-        blink-caret .75s step-end infinite;
-}
-
-.typewriter:nth-child(2) {
-    animation: 
-        typewriter 2s steps(40, end) 2.5s forwards,
-        blink-caret .75s step-end infinite 2.5s;
-}
-
-.typewriter:nth-child(3) {
-    animation: 
-        typewriter 2s steps(40, end) 4.5s forwards,
-        blink-caret .75s step-end infinite 4.5s;
-}
-
-footer {
-    background-color: #727272;
-    color: #fff;
-    text-align: center;
-    padding: 1rem;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-
-/* Anpassen der Scrollbar-Stile für die Karte */
-.card::-webkit-scrollbar {
-    width: 8px;
-}
-
-.card::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.card::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 4px;
-}
-
-/* Für Firefox */
-.card {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.1);
-}
-
-.music-card {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 300px;
-    background-color: rgba(0, 0, 0, 0.7);
-    border-radius: 10px;
-    overflow: hidden;
+.logo-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
     padding: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
-#album-art {
-    width: 60px;
-    height: 60px;
-    border-radius: 5px;
-    float: left;
-    margin-right: 10px;
-}
-
-.music-info {
-    margin-left: 70px;
-}
-
-.music-info h2 {
-    color: #00ff00;
-    font-size: 16px;
-    margin: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.music-info p {
-    color: #ffffff;
-    font-size: 14px;
-    margin: 5px 0 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.timeline {
-    margin-top: 10px;
-}
-
-.progress-bar {
-    width: 100%;
-    height: 4px;
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 2px;
-    cursor: pointer;
-}
-
-#progress {
-    width: 0;
-    height: 100%;
-    background-color: #00ff00;
-    border-radius: 2px;
-}
-
-.time-info {
-    display: flex;
-    justify-content: space-between;
-    color: #ffffff;
-    font-size: 12px;
-    margin-top: 5px;
-}
-
-.music-controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 15px;
-}
-
-.music-controls button {
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    padding: 10px;
-    margin: 0 15px;
-}
-
-.music-controls button img {
-    width: 24px;
-    height: 24px;
-    filter: brightness(0) invert(1);
-}
-
-#play-pause {
-    padding: 15px;
-}
-
-#play-pause img {
-    width: 32px;
-    height: 32px;
-}
-
-.music-controls button:hover img {
-    transform: scale(1.2);
-}
-
-.external-link-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-    padding: 10px 20px;
-    border-radius: 10px;
+.logo-text {
+    font-family: 'Zanaz', sans-serif;
+    font-size: 3rem;
+    color: white;
     text-decoration: none;
-    font-size: 1rem;
+    filter: drop-shadow(0 0 10px rgba(147, 51, 234, 0.5));
     transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 0 20px rgba(255, 255, 255, 0.5);
-    z-index: 1000;
+}
+
+.logo-text:hover {
+    filter: drop-shadow(0 0 15px rgba(147, 51, 234, 0.8));
+    transform: scale(1.05);
+}
+
+h1 {
+    color: white;
+    font-size: 5rem;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -30%);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
 }
