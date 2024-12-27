@@ -3,9 +3,7 @@ import { getDatabase, ref, onValue, runTransaction } from "https://www.gstatic.c
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
 
 const videos = [
-    '../videos/video 1.mp4',
-    '../videos/video 2.mp4',
-    '../videos/video 3.mp4',
+    '../videos/video 1.mp4'
 ];
 
 function randomizeVideo() {
