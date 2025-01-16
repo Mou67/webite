@@ -62,13 +62,18 @@ body {
 }
 
 .logo-container {
-    position: relative;
+    position: fixed;
     top: 30px;
     left: 30px;
+    user-select: none;
+    pointer-events: none;
+    z-index: 1000;
 }
 
 .logo-image {
     transition: all 0.3s ease;
+    pointer-events: auto;
+    -webkit-user-drag: none;
 }
 
 .logo-image:hover {
@@ -127,6 +132,35 @@ h1 {
     background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: var(--spacing-lg);
+    position: relative;
+    display: inline-block;
+}
+
+    h1::before {
+        content: '✦ ';
+        position: absolute;
+        left: -40px;
+        -webkit-text-fill-color: hsl(261, 100%, 66%);
+        animation: starFloat 3s ease-in-out infinite;
+    }
+
+    h1::after {
+        content: ' ✦';
+        position: absolute;
+        right: -40px;
+        -webkit-text-fill-color: hsl(261, 100%, 66%);
+        animation: starFloat 3s ease-in-out infinite 1.5s;
+    }
+
+@keyframes starFloat {
+    0%, 100% {
+        transform: translateY(0) scale(1) rotate(0deg);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translateY(-5px) scale(1.2) rotate(15deg);
+        opacity: 1;
+    }
 }
 
 h2 {

@@ -186,6 +186,28 @@ function typeText(element, text, speed = 50, callback = null) {
     })();
 }
 
+// Titel Animation
+function animateTitle() {
+    const titles = [
+        "✦✦ Mou67 ✦✦",
+        "★彡 Mou67 彡★",
+        "⟨✧⟩ Mou67 ⟨✧⟩",
+        "✧･ﾟ Mou67 ･ﾟ✧",
+        "⋆˙⟡ Mou67 ⟡˙⋆",
+        "✩°｡⋆ Mou67 ⋆｡°✩",
+        "⊹₊ Mou67 ₊⊹",
+        "˗ˏˋ Mou67 ˎˊ˗",
+        "⭒☆ﾟ Mou67 ﾟ☆⭒",
+        "⋆｡°✩ Mou67 ✩°｡⋆"
+    ];
+    let currentIndex = 0;
+
+    setInterval(() => {
+        document.title = titles[currentIndex];
+        currentIndex = (currentIndex + 1) % titles.length;
+    }, 1000);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     try {
         const audio = document.getElementById('bgMusic');
@@ -265,3 +287,6 @@ window.addEventListener('unload', () => {
         window.dynamicEffects.destroy();
     }
 });
+
+// Starte die Animation wenn das Dokument geladen ist
+document.addEventListener('DOMContentLoaded', animateTitle);
