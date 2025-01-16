@@ -3,59 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <meta name="description" content="Mou67's personal portfolio - Developer, Anime & Gaming Enthusiast">
+    <meta name="theme-color" content="#000000">
+    
+    <!-- Preload wichtiger Assets -->
+    <link rel="preload" href="assets/Mou.png" as="image">
+    <link rel="preload" href="/videos/video 1.mp4" as="video">
+    <link rel="preload" href="/videos/Joji - NIGHT RIDER.mp3" as="audio">
+    
+    <!-- Fonts optimiert laden -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Inter:wght@300;400;500&display=swap" 
+          rel="stylesheet">
+    
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <link rel="stylesheet" href="style.css">
-    <title>Mou67</title>
+    <title>Mou67 | Developer & Creative</title>
 </head>
 <body>
     <div class="background-container">
+        <!-- Audio mit besserer Kontrolle -->
+        <audio id="bgMusic" preload="auto" loop>
+            <source src="/videos/Joji - NIGHT RIDER.mp3" type="audio/mp3">
+            <track kind="captions" src="captions.vtt" label="English">
+        </audio>
+
+        <!-- Logo mit lazy loading -->
         <div class="logo-container">
-            <img src="../assets/Mou.png" alt="Mou Logo" class="logo-image">
+            <img src="assets/Mou.png" 
+                 alt="Mou Logo" 
+                 class="logo-image" 
+                 loading="eager" 
+                 width="100" 
+                 height="auto">
         </div>
-        <video autoplay muted loop id="myVideo">
-            <source src="../videos/video 4.mp4" type="video/mp4">
-            Your browser does not support the video tag.
+
+        <!-- Video optimiert -->
+        <video id="myVideo" 
+               autoplay 
+               muted 
+               loop 
+               playsinline 
+               poster="videos/poster.jpg">
+            <source src="videos/video 1.mp4" type="video/mp4">
         </video>
-        <div class="content">
+
+        <!-- Hauptinhalt -->
+        <main class="content">
             <h1>Hi, I'm Mou</h1>
-            <div class="intro-section">
-                <p>Welcome to my personal website</p>
-            </div>
-            <div class="about-section">
+            
+            <section class="intro-section">
+                <p aria-live="polite"></p>
+            </section>
+
+            <section class="about-section">
                 <h2>About Me</h2>
-                <p>I'm just a guy that likes programming, anime, gaming and learning new things.</p>
-                <p>Nice to meet you, perhaps we can create somrthing together.</p>
-            </div>
-            <div class="skills-section">
+                <p aria-live="polite"></p>
+                <p aria-live="polite"></p>
+            </section>
+
+            <section class="skills-section">
                 <h2>My Skills</h2>
-                <div class="skills-grid">
-                    <div class="skill-item">HTML</div>
-                    <div class="skill-item">CSS</div>
-                    <div class="skill-item">JavaScript</div>
-                    <div class="skill-item">Python</div>
+                <div class="skills-grid" role="list">
+                    <div class="skill-item" role="listitem"></div>
+                    <div class="skill-item" role="listitem"></div>
+                    <div class="skill-item" role="listitem"></div>
+                    <div class="skill-item" role="listitem"></div>
                 </div>
-            </div>
-            <div class="contact-section">
+            </section>
+
+            <section class="contact-section">
                 <h2>Get in Touch</h2>
                 <div class="social-links">
-                    <a href="https://github.com/Mou67" target="_blank" rel="noopener" class="social-link">GitHub</a>
-                    <a href="https://aideon.gitbook.io/aideon" target="_blank" rel="noopener" class="social-link">
-                        Discord Bot
+                    <a href="https://github.com/Mou67" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="social-link" 
+                       aria-label="Visit my GitHub profile">
+                        GitHub Profile
+                    </a>
+                    <a href="https://aideon.gitbook.io/aideon" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="social-link" 
+                       aria-label="Visit my Aideon documentation">
+                        Aideon Docs
                     </a>
                 </div>
-            </div>
-        </div>
-        <div class="visitor-counter">
-            <div class="eye">
-                <div class="eye-ball"></div>
-            </div>
-            <div class="visitor-count">
-                <span id="counter">0</span>
-                <span class="counter-text">visitors</span>
-            </div>
+            </section>
+        </main>
+
+        <!-- Audio Visualizer -->
+        <div class="audio-visualizer" aria-hidden="true">
+            <canvas id="audioCanvas"></canvas>
         </div>
     </div>
+
+    <!-- Scripts -->
     <script type="module" src="script.js"></script>
 </body>
 </html>
