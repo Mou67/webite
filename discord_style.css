@@ -1,0 +1,243 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #36393f;
+    font-family: 'Inter', sans-serif;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('discord_files/background.png') center/cover no-repeat;
+    filter: brightness(0.3) blur(3px);
+    z-index: -1;
+}
+
+.discord-container {
+    width: 90%;
+    max-width: 600px;
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    padding: 1px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.discord-profile {
+    background: #2f3136;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.profile-banner {
+    height: 120px;
+    overflow: hidden;
+    position: relative;
+    background: #000;
+}
+
+.banner-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: brightness(0.9);
+}
+
+.profile-info {
+    padding: 20px;
+    position: relative;
+}
+
+.profile-avatar {
+    position: absolute;
+    top: -40px;
+    left: 20px;
+    width: 80px;
+    height: 80px;
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 6px solid #2f3136;
+}
+
+.status-dot {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 16px;
+    height: 16px;
+    background: #3ba55c;
+    border-radius: 50%;
+    border: 3px solid #2f3136;
+}
+
+.profile-details {
+    margin-left: 100px;
+    padding-top: 20px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.discriminator {
+    color: #b9bbbe;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+.badges {
+    display: flex;
+    gap: 8px;
+    margin: 10px 0;
+}
+
+.badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.badge-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    transition: transform 0.2s ease;
+}
+
+.badge.nitro, 
+.badge.active, 
+.badge.legacy { /* Add legacy badge */
+    background: transparent; 
+    padding: 0; 
+    position: relative; 
+}
+
+.badge.nitro::after, 
+.badge.active::after, 
+.badge.legacy::after { /* Add legacy badge */
+    content: attr(data-tooltip); 
+    position: absolute; 
+    bottom: 100%; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    background: #18191c; 
+    padding: 4px 8px; 
+    border-radius: 4px; 
+    font-size: 12px; 
+    white-space: nowrap; 
+    opacity: 0; 
+    visibility: hidden; 
+    transition: all 0.2s ease; 
+    margin-bottom: 5px; 
+}
+
+.badge.nitro:hover::after, 
+.badge.active:hover::after, 
+.badge.legacy:hover::after { /* Add legacy badge */
+    opacity: 1; 
+    visibility: visible; 
+}
+
+.badge.nitro:hover .badge-icon, 
+.badge.active:hover .badge-icon, 
+.badge.legacy:hover .badge-icon { /* Add legacy badge */
+    transform: scale(1.1); 
+}
+
+.activity {
+    background: #202225;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+.activity:hover {
+    transform: scale(1.03);
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 12px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.activity:hover .game-info {
+    font-size: 1.05em;
+    line-height: 1.3;
+}
+
+.activity:hover small {
+    font-size: 0.9em;
+    opacity: 1;
+}
+
+.activity-header {
+    color: #b9bbbe;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.game {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.game-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.game-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.game-info span {
+    font-size: 14px;
+}
+
+.game-info small {
+    color: #b9bbbe;
+    font-size: 12px;
+}
+
+.back-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #5865f2;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.back-btn:hover {
+    background: #4752c4;
+}
