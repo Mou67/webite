@@ -11,7 +11,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 300vh; /* Updated Scrollhöhe */
+    min-height: 300vh;
     padding: 0;
     position: relative;
 }
@@ -148,7 +148,7 @@ h1 {
 
 .badge.nitro, 
 .badge.active, 
-.badge.legacy { /* Add legacy badge */
+.badge.legacy {
     background: transparent; 
     padding: 0; 
     position: relative; 
@@ -156,7 +156,7 @@ h1 {
 
 .badge.nitro::after, 
 .badge.active::after, 
-.badge.legacy::after { /* Add legacy badge */
+.badge.legacy::after {
     content: attr(data-tooltip); 
     position: absolute; 
     bottom: 100%; 
@@ -175,14 +175,14 @@ h1 {
 
 .badge.nitro:hover::after, 
 .badge.active:hover::after, 
-.badge.legacy:hover::after { /* Add legacy badge */
+.badge.legacy:hover::after {
     opacity: 1; 
     visibility: visible; 
 }
 
 .badge.nitro:hover .badge-icon, 
 .badge.active:hover .badge-icon, 
-.badge.legacy:hover .badge-icon { /* Add legacy badge */
+.badge.legacy:hover .badge-icon {
     transform: scale(1.1); 
 }
 
@@ -319,39 +319,37 @@ h1 {
     background: rgba(255, 255, 255, 0.05);
 }
 
-/* Timeline Styles */
 .timeline-section {
     width: 100%;
     position: relative;
-    margin-top: 150vh; /* Mehr Abstand nach oben */
-    padding-top: 100px; /* Reduzierter oberer Abstand */
-    z-index: 1; /* Höherer z-index als die Linie */
-    min-height: 600vh; /* Viel mehr Scrollbereich */
+    margin-top: 150vh;
+    padding-top: 100px;
+    z-index: 1;
+    min-height: 600vh;
 }
 
 .timeline-container {
     position: relative;
     width: 100%;
-    max-width: 1000px; /* Breiter für bessere Kartenverteilung */
+    max-width: 1000px; 
     margin: 0 auto;
     padding: 40px 20px;
-    min-height: 150vh; /* Mehr Höhe für Container */
+    min-height: 150vh;
 }
 
 .timeline-line {
     position: absolute;
     left: 50%;
     width: 6px;
-    height: 95%; /* Fast die gesamte Höhe */
+    height: 95%;
     background: #5865f2;
     transform: translateX(-50%);
-    opacity: 0.7; /* Erhöhte Sichtbarkeit */
+    opacity: 0.7;
     z-index: 0;
-    top: 100px; /* Weniger Abstand von oben */
+    top: 100px;
     border-radius: 3px;
 }
 
-/* Entferne den after-Pseudo-Element für den Glüheffekt */
 .timeline-line::after {
     display: none;
 }
@@ -360,7 +358,7 @@ h1 {
     opacity: 0;
     transform: translateY(50px);
     transition: all 1s ease;
-    width: 35%; /* Schmaler für mehr Abstand zur Mittellinie */
+    width: 35%;
     margin: 150px 0;
     position: relative;
     background: rgba(47, 49, 54, 0.9);
@@ -391,17 +389,15 @@ h1 {
     font-size: 1.1em;
 }
 
-/* Remove dots from timeline cards */
 .timeline-card::before {
     display: none;
 }
 
-/* Adjust card positions without dots */
 .timeline-card.left {
     float: left;
     clear: both;
     margin-right: 50%;
-    margin-left: 40px; /* Abstand von der linken Seite */
+    margin-left: 40px;
     padding-right: 40px;
 }
 
@@ -409,29 +405,27 @@ h1 {
     float: right;
     clear: both;
     margin-left: 50%;
-    margin-right: 40px; /* Abstand von der rechten Seite */
+    margin-right: 40px;
     padding-left: 40px;
 }
 
-/* Container nach den Karten clearen */
 .timeline-container::after {
     content: '';
     display: table;
     clear: both;
 }
 
-/* Neuer Footer Style */
 .footer {
     width: 100%;
     text-align: center;
     padding: 100px 0;
     background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(5px);
-    margin-top: 800px; /* Noch mehr Abstand zum Footer */
+    margin-top: 800px;
 }
 
 .footer p {
-    font-size: 1.5em; /* Größerer Text */
+    font-size: 1.5em;
     color: #fff;
     text-shadow: 0 0 20px rgba(88, 101, 242, 0.8);
     opacity: 0.8;
@@ -443,14 +437,13 @@ h1 {
     text-shadow: 0 0 30px rgba(88, 101, 242, 1);
 }
 
-/* Responsive Timeline */
 @media screen and (max-width: 768px) {
     .timeline-line {
         left: 30px;
     }
 
     .timeline-card {
-        width: calc(100% - 80px); /* Mehr Platz für mobile Ansicht */
+        width: calc(100% - 80px);
         margin: 100px 0;
     }
 
@@ -465,29 +458,27 @@ h1 {
     }
 }
 
-/* Adjust main container for scrolling */
 body {
     overflow-y: auto;
     overflow-x: hidden;
 }
 
-/* Waste Time Section */
 .waste-time-section {
     width: 100%;
-    max-width: 1200px; /* Breiter für mehr seitlichen Spielraum */
-    margin: 200vh auto 100px; /* Updated margin */
+    max-width: 1200px;
+    margin: 200vh auto 100px;
     padding: 20px;
-    min-height: 200vh; /* Updated height */
+    min-height: 200vh;
 }
 
 .waste-message {
     text-align: center;
-    margin: 100vh 0; /* Updated margin */
+    margin: 100vh 0;
     opacity: 0;
     transform: translateY(50px);
     position: relative;
     perspective: 1000px;
-    will-change: transform, opacity; /* Added will-change property */
+    will-change: transform, opacity;
 }
 
 /* Abwechselnde Positionen */
@@ -511,7 +502,6 @@ body {
     transform: rotate(-2deg);
 }
 
-/* Verschiedene Effekte für verschiedene Nachrichten */
 .waste-message[data-effect="rotate"] {
     transform: rotateX(90deg);
 }
@@ -551,11 +541,11 @@ body {
 }
 
 .waste-message p {
-    font-size: 2.2em; /* Noch größere Schrift */
+    font-size: 2.2em;
     color: #fff;
     text-shadow: 0 0 10px rgba(88, 101, 242, 0.5);
     margin: 0;
-    padding: 30px; /* Größere Nachrichten */
+    padding: 30px;
     background: rgba(47, 49, 54, 0.9);
     border-radius: 8px;
     backdrop-filter: blur(5px);
@@ -571,7 +561,6 @@ body {
     background: rgba(88, 101, 242, 0.2);
 }
 
-/* Abwechselnde Positionen */
 .waste-message:nth-child(4n+1) {
     margin-left: -300px;
     transform: rotate(-2deg);
@@ -597,7 +586,6 @@ body {
     transform: translateY(0) rotate(0);
 }
 
-/* Special Effect */
 .special-effect {
     cursor: pointer;
     position: relative;
@@ -629,7 +617,6 @@ body {
     filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
 }
 
-/* Button Styles */
 .back-btn,
 .social-link,
 .discord-btn {
@@ -693,7 +680,6 @@ body {
     box-shadow: 0 5px 10px rgba(88, 101, 242, 0.2);
 }
 
-/* Animationen für Buttons */
 @keyframes buttonPulse {
     0% { box-shadow: 0 0 0 0 rgba(88, 101, 242, 0.4); }
     70% { box-shadow: 0 0 0 10px rgba(88, 101, 242, 0); }
@@ -707,7 +693,6 @@ body {
     animation: buttonPulse 1.5s infinite;
 }
 
-/* Responsive Anpassungen */
 @media (max-width: 768px) {
     .back-btn,
     .social-link,
@@ -717,7 +702,6 @@ body {
     }
 }
 
-/* ...existing code... */
 
 .end-message {
     margin: 150vh 0 50vh 0 !important;
@@ -747,8 +731,6 @@ body {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
-
-/* ...rest of existing code... */
 
 .reward-popup {
     position: fixed;
@@ -860,10 +842,6 @@ body {
     100% { opacity: 0.6; }
 }
 
-/* ...rest of existing code... */
-
-/* ...existing code... */
-
 .scroll-hint {
     position: fixed;
     bottom: 40px;
@@ -898,5 +876,3 @@ body {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(5px); }
 }
-
-/* ...rest of existing code... */

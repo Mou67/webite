@@ -1,4 +1,3 @@
-// Variablen und Nachrichten zuerst deklarieren
 let lastLoadedIndex = 0;
 let isScrolling = false;
 let eggsFound = 0;
@@ -205,7 +204,6 @@ function checkScroll() {
         }, 500);
     }
 
-    // Check if user reached the bottom
     const footer = document.querySelector('.footer');
     if (footer) {
         const footerRect = footer.getBoundingClientRect();
@@ -215,9 +213,7 @@ function checkScroll() {
     }
 }
 
-// DOM-Events in einem Block
 document.addEventListener('DOMContentLoaded', () => {
-    // Scroll hint hinzufügen
     const scrollHint = document.createElement('div');
     scrollHint.className = 'scroll-hint';
     scrollHint.textContent = 'Psst! There might be something interesting below';
@@ -225,9 +221,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     setTimeout(() => {
         scrollHint.remove();
-    }, 5500); // Entfernen nach Animation
+    }, 5500);
 
-    // Easter Eggs initialisieren
     const profileAvatar = document.querySelector('.profile-avatar');
     const secretArea = document.querySelector('.secret-click-area');
     const wasteSection = document.querySelector('#wasteSection');
@@ -253,7 +248,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Konami Code
     document.addEventListener('keydown', (e) => {
         if (e.key === konamiCode[konamiIndex]) {
             konamiIndex++;
@@ -270,14 +264,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Initiale Nachrichten
     if (wasteSection) {
         for (let i = 0; i < 3; i++) {
             addNewMessage();
         }
     }
 
-    // Scroll Event mit Throttling
     let scrollTimeout;
     window.addEventListener('scroll', () => {
         if (scrollTimeout) return;
