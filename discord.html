@@ -8,42 +8,59 @@
     <link rel="stylesheet" href="discord_style.css">
 </head>
 <body>
-    <div class="discord-container">
-        <div class="discord-profile">
-            <div class="profile-banner">
-                <img src="discord_files/7066-katana-pfpsgg.gif" alt="Profile Banner" class="banner-image">
-            </div>
-            <div class="profile-info">
-                <div class="profile-avatar">
-                    <img src="discord_files/pb.png" alt="Mou Avatar">
-                    <span class="status-dot online"></span>
+    <div class="page-container">
+        <div class="discord-container">
+            <div class="discord-profile">
+                <div class="profile-banner">
+                    <img src="discord_files/7066-katana-pfpsgg.gif" alt="Profile Banner" class="banner-image">
                 </div>
-                <div class="profile-details">
-                    <h1>mou67</h1>
-                    <div class="badges">
-                        <span class="badge nitro" data-tooltip="Nitro">
-                            <img src="discord_files/discord-nitro-badge.png" alt="Nitro" class="badge-icon">
-                        </span>
-                        <span class="badge legacy" data-tooltip="Originally Mou67#9151">
-                            <img src="discord_files/Legacy_Username_Badge.png" alt="Legacy User" class="badge-icon">
-                        </span>
-                        <span class="badge active" data-tooltip="Active Developer">
-                            <img src="discord_files/7011-active-developer-badge.png" alt="Active Developer" class="badge-icon">
-                        </span>
+                <div class="profile-info">
+                    <div class="profile-avatar">
+                        <img src="discord_files/pb.png" alt="Mou Avatar">
+                        <span class="status-dot online"></span>
                     </div>
-                    <div class="activity">
-                        <div class="activity-header">Searching</div>
-                        <div class="game">
-                            <div class="game-info">
-                                <span>for an girlfreind, i just cant find one</span>
-                                <small>i just want a hug is it so hard to understand</small>
+                    <div class="profile-details">
+                        <h1>mou67</h1>
+                        <div class="badges">
+                            <span class="badge nitro" data-tooltip="Nitro">
+                                <img src="discord_files/discord-nitro-badge.png" alt="Nitro" class="badge-icon">
+                            </span>
+                            <span class="badge legacy" data-tooltip="Originally Mou67#9151">
+                                <img src="discord_files/Legacy_Username_Badge.png" alt="Legacy User" class="badge-icon">
+                            </span>
+                            <span class="badge active" data-tooltip="Active Developer">
+                                <img src="discord_files/7011-active-developer-badge.png" alt="Active Developer" class="badge-icon">
+                            </span>
+                        </div>
+                        <div class="activity">
+                            <div class="activity-header">Searching</div>
+                            <div class="game">
+                                <div class="game-info">
+                                    <span>for an girlfreind, i just cant find one</span>
+                                    <small>i just want a hug is it so hard to understand</small>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <a href="index.html" class="back-btn">Back to Home</a>
         </div>
-        <a href="index.html" class="back-btn">Back to Home</a>
+
+        <div class="timeline-section">
+            <!-- ...existing timeline content... -->
+        </div>
+
+        <div class="waste-time-section" id="wasteSection">
+            <!-- Messages will be added here dynamically -->
+        </div>
+
+        <div class="footer">
+            <p>Thanks for scrolling! Made with 💜 by mou67</p>
+        </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="discord_script.js"></script>
 </body>
 </html>

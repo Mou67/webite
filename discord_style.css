@@ -4,12 +4,16 @@ body {
     background: #36393f;
     font-family: 'Inter', sans-serif;
     color: white;
-    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.page-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    min-height: 300vh; /* Updated Scrollhöhe */
+    padding: 0;
     position: relative;
-    overflow: hidden;
 }
 
 body::before {
@@ -26,11 +30,28 @@ body::before {
 
 .discord-container {
     width: 90%;
-    max-width: 600px;
+    max-width: 800px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
     backdrop-filter: blur(10px);
     border-radius: 8px;
     padding: 1px;
     background: rgba(0, 0, 0, 0.2);
+    transition: all 0.5s ease;
+}
+
+.discord-container.scrolled {
+    top: 80px;
+    transform: translateX(-50%);
+}
+
+.discord-container.hidden {
+    opacity: 0;
+    transform: translate(-50%, -100%);
+    pointer-events: none;
 }
 
 .discord-profile {
@@ -90,7 +111,6 @@ body::before {
     margin-left: 100px;
     padding-top: 20px;
 }
-
 h1 {
     margin: 0;
     font-size: 24px;
@@ -241,3 +261,642 @@ h1 {
 .back-btn:hover {
     background: #4752c4;
 }
+
+.easter-egg-counter {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.hidden-cat {
+    position: fixed;
+    bottom: -50px;
+    right: 20px;
+    font-size: 30px;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.hidden-cat.show {
+    bottom: 20px;
+    opacity: 1;
+}
+
+.konami-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 24px;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.konami-message.show {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.secret-click-area {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.secret-click-area:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Timeline Styles */
+.timeline-section {
+    width: 100%;
+    position: relative;
+    margin-top: 150vh; /* Mehr Abstand nach oben */
+    padding-top: 100px; /* Reduzierter oberer Abstand */
+    z-index: 1; /* Höherer z-index als die Linie */
+    min-height: 600vh; /* Viel mehr Scrollbereich */
+}
+
+.timeline-container {
+    position: relative;
+    width: 100%;
+    max-width: 1000px; /* Breiter für bessere Kartenverteilung */
+    margin: 0 auto;
+    padding: 40px 20px;
+    min-height: 150vh; /* Mehr Höhe für Container */
+}
+
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    width: 6px;
+    height: 95%; /* Fast die gesamte Höhe */
+    background: #5865f2;
+    transform: translateX(-50%);
+    opacity: 0.7; /* Erhöhte Sichtbarkeit */
+    z-index: 0;
+    top: 100px; /* Weniger Abstand von oben */
+    border-radius: 3px;
+}
+
+/* Entferne den after-Pseudo-Element für den Glüheffekt */
+.timeline-line::after {
+    display: none;
+}
+
+.timeline-card {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s ease;
+    width: 35%; /* Schmaler für mehr Abstand zur Mittellinie */
+    margin: 150px 0;
+    position: relative;
+    background: rgba(47, 49, 54, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.timeline-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card-content h3 {
+    color: #5865f2;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+
+.card-content p {
+    color: #fff;
+    line-height: 1.6;
+    font-size: 1.1em;
+}
+
+/* Remove dots from timeline cards */
+.timeline-card::before {
+    display: none;
+}
+
+/* Adjust card positions without dots */
+.timeline-card.left {
+    float: left;
+    clear: both;
+    margin-right: 50%;
+    margin-left: 40px; /* Abstand von der linken Seite */
+    padding-right: 40px;
+}
+
+.timeline-card.right {
+    float: right;
+    clear: both;
+    margin-left: 50%;
+    margin-right: 40px; /* Abstand von der rechten Seite */
+    padding-left: 40px;
+}
+
+/* Container nach den Karten clearen */
+.timeline-container::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+/* Neuer Footer Style */
+.footer {
+    width: 100%;
+    text-align: center;
+    padding: 100px 0;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    margin-top: 800px; /* Noch mehr Abstand zum Footer */
+}
+
+.footer p {
+    font-size: 1.5em; /* Größerer Text */
+    color: #fff;
+    text-shadow: 0 0 20px rgba(88, 101, 242, 0.8);
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.footer p:hover {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(88, 101, 242, 1);
+}
+
+/* Responsive Timeline */
+@media screen and (max-width: 768px) {
+    .timeline-line {
+        left: 30px;
+    }
+
+    .timeline-card {
+        width: calc(100% - 80px); /* Mehr Platz für mobile Ansicht */
+        margin: 100px 0;
+    }
+
+    .timeline-card.left,
+    .timeline-card.right {
+        margin-left: 60px;
+    }
+
+    .discord-container {
+        max-width: 95%;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+}
+
+/* Adjust main container for scrolling */
+body {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Waste Time Section */
+.waste-time-section {
+    width: 100%;
+    max-width: 1200px; /* Breiter für mehr seitlichen Spielraum */
+    margin: 200vh auto 100px; /* Updated margin */
+    padding: 20px;
+    min-height: 200vh; /* Updated height */
+}
+
+.waste-message {
+    text-align: center;
+    margin: 100vh 0; /* Updated margin */
+    opacity: 0;
+    transform: translateY(50px);
+    position: relative;
+    perspective: 1000px;
+    will-change: transform, opacity; /* Added will-change property */
+}
+
+/* Abwechselnde Positionen */
+.waste-message:nth-child(4n+1) {
+    margin-left: -400px;
+    transform: rotate(-3deg);
+}
+
+.waste-message:nth-child(4n+2) {
+    margin-right: -400px;
+    transform: rotate(3deg);
+}
+
+.waste-message:nth-child(4n+3) {
+    margin-left: 300px;
+    transform: rotate(2deg);
+}
+
+.waste-message:nth-child(4n) {
+    margin-right: 300px;
+    transform: rotate(-2deg);
+}
+
+/* Verschiedene Effekte für verschiedene Nachrichten */
+.waste-message[data-effect="rotate"] {
+    transform: rotateX(90deg);
+}
+
+.waste-message[data-effect="zoom"] {
+    transform: scale(0.1) rotate(-10deg);
+}
+
+.waste-message[data-effect="slide"] {
+    transform: translateX(-200%) skew(-20deg);
+}
+
+.waste-message[data-effect="fade"] {
+    transform: translateY(100px) rotate(5deg);
+    opacity: 0;
+}
+
+.waste-message.visible[data-effect="rotate"] {
+    transform: rotateX(0);
+    transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.waste-message.visible[data-effect="zoom"] {
+    transform: scale(1) rotate(0);
+    transition: all 0.8s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+.waste-message.visible[data-effect="slide"] {
+    transform: translateX(0) skew(0);
+    transition: all 1.2s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.waste-message.visible[data-effect="fade"] {
+    transform: translateY(0) rotate(0);
+    opacity: 1;
+    transition: all 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.waste-message p {
+    font-size: 2.2em; /* Noch größere Schrift */
+    color: #fff;
+    text-shadow: 0 0 10px rgba(88, 101, 242, 0.5);
+    margin: 0;
+    padding: 30px; /* Größere Nachrichten */
+    background: rgba(47, 49, 54, 0.9);
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.5s ease;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+}
+
+.waste-message p:hover {
+    transform: scale(1.05) translateY(-10px);
+    box-shadow: 0 10px 30px rgba(88, 101, 242, 0.3);
+    background: rgba(88, 101, 242, 0.2);
+}
+
+/* Abwechselnde Positionen */
+.waste-message:nth-child(4n+1) {
+    margin-left: -300px;
+    transform: rotate(-2deg);
+}
+
+.waste-message:nth-child(4n+2) {
+    margin-right: -300px;
+    transform: rotate(2deg);
+}
+
+.waste-message:nth-child(4n+3) {
+    margin-left: 200px;
+    transform: rotate(1deg);
+}
+
+.waste-message:nth-child(4n) {
+    margin-right: 200px;
+    transform: rotate(-1deg);
+}
+
+.waste-message.visible {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+}
+
+/* Special Effect */
+.special-effect {
+    cursor: pointer;
+    position: relative;
+    overflow: visible;
+    transition: all 0.3s ease;
+}
+
+.special-effect:hover {
+    transform: scale(1.1) !important;
+    box-shadow: 0 10px 30px rgba(88, 101, 242, 0.5);
+    z-index: 10;
+}
+
+@keyframes floatParticle {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(25px, -100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.particle-emoji {
+    position: fixed;
+    pointer-events: none;
+    z-index: 1000;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+}
+
+/* Button Styles */
+.back-btn,
+.social-link,
+.discord-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: #5865f2;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    border: 1px solid transparent;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.back-btn::before,
+.social-link::before,
+.discord-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.2)
+    );
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.back-btn:hover,
+.social-link:hover,
+.discord-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 
+        0 10px 20px rgba(88, 101, 242, 0.3),
+        0 0 0 1px rgba(88, 101, 242, 0.3);
+    background: #4752c4;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.back-btn:hover::before,
+.social-link:hover::before,
+.discord-btn:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.back-btn:active,
+.social-link:active,
+.discord-btn:active {
+    transform: translateY(-1px) scale(0.98);
+    box-shadow: 0 5px 10px rgba(88, 101, 242, 0.2);
+}
+
+/* Animationen für Buttons */
+@keyframes buttonPulse {
+    0% { box-shadow: 0 0 0 0 rgba(88, 101, 242, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(88, 101, 242, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(88, 101, 242, 0); }
+}
+
+.back-btn:focus,
+.social-link:focus,
+.discord-btn:focus {
+    outline: none;
+    animation: buttonPulse 1.5s infinite;
+}
+
+/* Responsive Anpassungen */
+@media (max-width: 768px) {
+    .back-btn,
+    .social-link,
+    .discord-btn {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+}
+
+/* ...existing code... */
+
+.end-message {
+    margin: 150vh 0 50vh 0 !important;
+    transform: scale(0.8);
+}
+
+.end-message p {
+    background: linear-gradient(45deg, #5865f2, #ff73fa);
+    font-size: 2.5em;
+    padding: 40px;
+    line-height: 1.5;
+}
+
+.end-message.visible {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.end-emoji {
+    font-size: 3em;
+    display: block;
+    margin-top: 20px;
+    animation: spin 4s infinite linear;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ...rest of existing code... */
+
+.reward-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, #5865f2 0%, #ff73fa 100%);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.reward-content {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.reward-content h3 {
+    color: #fff;
+    font-size: 1.5em;
+    margin: 0 0 15px 0;
+}
+
+.reward-content p {
+    color: #fff;
+    margin: 0 0 20px 0;
+}
+
+.reward-code {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.reward-code code {
+    color: #5865f2;
+    font-size: 1.2em;
+    font-family: monospace;
+}
+
+.copy-btn {
+    background: #5865f2;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.copy-btn:hover {
+    background: #4752c4;
+    transform: translateY(-2px);
+}
+
+.reward-content small {
+    color: #b9bbbe;
+    display: block;
+    margin-top: 15px;
+}
+
+@keyframes popIn {
+    0% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+.fade-out {
+    animation: fadeOut 0.5s forwards;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translate(-50%, -30%);
+    }
+}
+
+.reward-timer {
+    margin-top: 15px;
+    color: #ff73fa;
+    font-size: 0.9em;
+    font-weight: 500;
+    animation: pulse 2s infinite;
+}
+
+.reward-timer span {
+    color: #fff;
+    font-weight: bold;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+/* ...rest of existing code... */
+
+/* ...existing code... */
+
+.scroll-hint {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(88, 101, 242, 0.9);
+    padding: 15px 25px;
+    border-radius: 30px;
+    color: white;
+    font-size: 1.1em;
+    z-index: 100;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    animation: floatUpDown 2s ease-in-out infinite, fadeOut 0.5s ease-out forwards 5s;
+    white-space: nowrap;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.scroll-hint::after {
+    content: '👇';
+    margin-left: 10px;
+    display: inline-block;
+    animation: bounce 1s infinite;
+}
+
+@keyframes floatUpDown {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(5px); }
+}
+
+/* ...rest of existing code... */
