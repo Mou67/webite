@@ -1,107 +1,238 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mou67's personal portfolio - Developer, Anime & Gaming Enthusiast">
-    <meta name="theme-color" content="#000000">
-    
-    <!-- Preload wichtiger Assets -->
-    <link rel="preload" href="assets/Mou.png" as="image">
-    <link rel="preload" href="/videos/video 1.mp4" as="video">
-    <link rel="preload" href="/videos/Joji - NIGHT RIDER.mp3" as="audio">
-    
-    <!-- Fonts optimiert laden -->
+    <meta charset="UTF-8">    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mou67</title>    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/mobile-styles.css">
+    <link rel="stylesheet" href="assets/css/glass-effects.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Inter:wght@300;400;500&display=swap" 
-          rel="stylesheet">
-    
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    <link rel="stylesheet" href="style.css">
-    <title>M̷̗̰͇̪͐̏̾̆͌̈́͒͜͝ͅȍ̵̙̽ȕ̴͇͎͙̬̰̥̫̘͂̋̀̄͑ͅ6̷̨̨̛̥̩͈̞̗͎̓̊͊ͅ7̶̢̛̈́̉̆͗̕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="background-container">
-        <!-- Audio mit besserer Kontrolle -->
-        <audio id="bgMusic" preload="auto" loop>
-            <source src="/videos/Joji - NIGHT RIDER.mp3" type="audio/mp3">
-            <track kind="captions" src="captions.vtt" label="English">
-        </audio>
-
-        <!-- Logo mit lazy loading -->
-        <div class="logo-container">
-            <img src="assets/Mou.png" 
-                 alt="Mou Logo" 
-                 class="logo-image" 
-                 loading="eager" 
-                 width="100" 
-                 height="auto">
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">Mou67</div>
+        <div class="nav-links">
+            <a href="#home" class="nav-link">Start</a>
+            <a href="#about" class="nav-link">Über mich</a>
+            <a href="#skills" class="nav-link">Fähigkeiten</a>
+            <a href="#projects" class="nav-link">Projekte</a>
+            <a href="#contact" class="nav-link">Kontakt</a>
         </div>
+        <div class="menu-toggle">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </nav>
 
-        <!-- Video optimiert -->
-        <video id="myVideo" 
-               autoplay 
-               muted 
-               loop 
-               playsinline 
-               poster="videos/poster.jpg">
-            <source src="videos/video 1.mp4" type="video/mp4">
-        </video>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="glowing-text">Hallo, ich bin <span class="highlight">Mou67</span></h1>
+                <p class="subtitle">Österreicher & beschäftige mich in meiner Freizeit mit Front-End-Entwicklung</p>
+                <p class="description">Ich gestalte moderne, interaktive und benutzerfreundliche Weberlebnisse</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn primary-btn">Meine Arbeiten <i class="fas fa-arrow-right"></i></a>
+                    <a href="#contact" class="btn secondary-btn">Kontakt <i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="image-container">
+                    <div class="glow-effect"></div>
+                    <img src="assets/images/profile.png" alt="Profilbild">
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <p>Nach unten scrollen</p>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="grid-background"></div>
+    </section>
 
-        <!-- Hauptinhalt -->
-        <main class="content">
-            <h1>Hi, I'm Mou</h1>
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="section-header">
+            <h2>Über <span class="highlight">mich</span></h2>
+            <div class="section-line"></div>
+        </div>        <div class="about-content">
+            <div class="about-text-center">
+                <p>Hi ich bin Mou67 spitzname Mou und bin Hobby programmierer in der Front-End entwicklung, ich spiele unteranderem auch Games wie Star Citizen und vieles mehr, anime schau ich auch gern</p>
+            </div>
             
-            <section class="intro-section">
-                <p aria-live="polite"></p>
-            </section>
-
-            <section class="about-section">
-                <h2>About Me</h2>
-                <p aria-live="polite"></p>
-                <p aria-live="polite"></p>
-            </section>
-
-            <section class="skills-section">
-                <h2>My Skills</h2>
-                <div class="skills-grid" role="list">
-                    <div class="skill-item" role="listitem"></div>
-                    <div class="skill-item" role="listitem"></div>
-                    <div class="skill-item" role="listitem"></div>
-                    <div class="skill-item" role="listitem"></div>
+            <div class="about-cards">                <div class="about-card">
+                    <div class="orbit-trail"></div>
+                    <div class="card-content">
+                        <div class="card-icon"><i class="fas fa-code"></i></div>
+                        <h3>Webentwicklung</h3>
+                        <p>Erstellung moderner, responsiver Websites mit den neuesten Technologien</p>
+                    </div>
+                    <div class="card-hover-content">
+                        <h3>Meine Expertise</h3>
+                        <ul>
+                            <li><i class="fas fa-check"></i> HTML5 & CSS3</li>
+                            <li><i class="fas fa-check"></i> Responsive Design</li>
+                            <li><i class="fas fa-check"></i> JavaScript</li>
+                        </ul>
+                    </div>
+                </div>                <div class="about-card">
+                    <div class="orbit-trail"></div>
+                    <div class="card-content">
+                        <div class="card-icon"><i class="fas fa-paint-brush"></i></div>
+                        <h3>UI/UX Design</h3>
+                        <p>Benutzerfreundliche und ästhetisch ansprechende Designlösungen</p>
+                    </div>
+                    <div class="card-hover-content">
+                        <h3>Design-Tools</h3>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Moderne UI-Elemente</li>
+                            <li><i class="fas fa-check"></i> Intuitive Navigation</li>
+                            <li><i class="fas fa-check"></i> Visuelle Hierarchie</li>
+                        </ul>
+                    </div>
+                </div>                <div class="about-card">
+                    <div class="orbit-trail"></div>
+                    <div class="card-content">
+                        <div class="card-icon"><i class="fas fa-mobile-alt"></i></div>
+                        <h3>Mobile Optimierung</h3>
+                        <p>Perfekte Darstellung auf allen Geräten und Bildschirmgrößen</p>
+                    </div>
+                    <div class="card-hover-content">
+                        <h3>Optimierung für</h3>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Smartphones & Tablets</li>
+                            <li><i class="fas fa-check"></i> Desktop & Notebooks</li>
+                            <li><i class="fas fa-check"></i> Verschiedene Browser</li>
+                        </ul>
+                    </div>
                 </div>
-            </section>
-
-            <section class="contact-section">
-                <h2>Get in Touch</h2>
-                <div class="social-links">
-                    <a href="https://github.com/Mou67" 
-                       target="_blank" 
-                       rel="noopener noreferrer" 
-                       class="social-link" 
-                       aria-label="Visit my GitHub profile">
-                        GitHub Profile
-                    </a>
-                    <a href="https://aideon.gitbook.io/aideon" 
-                       target="_blank" 
-                       rel="noopener noreferrer" 
-                       class="social-link" 
-                       aria-label="Visit my Aideon documentation">
-                        Aideon Docs
-                    </a>
-                    <a href="discord.html" class="social-link discord-btn">My Discord Profile</a>
-                </div>
-            </section>
-        </main>
-
-        <!-- Audio Visualizer -->
-        <div class="audio-visualizer" aria-hidden="true">
-            <canvas id="audioCanvas"></canvas>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Scripts -->
-    <script type="module" src="script.js"></script>
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="section-header">
+            <h2>Meine <span class="highlight">Fähigkeiten</span></h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3>Programmiersprachen</h3>
+                <div class="skill-items">
+                    <div class="skill-item">
+                        <div class="skill-icon"><i class="fab fa-html5"></i></div>
+                        <div class="skill-info">
+                            <h4>HTML5</h4>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon"><i class="fab fa-css3-alt"></i></div>
+                        <div class="skill-info">
+                            <h4>CSS3</h4>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon"><i class="fab fa-js"></i></div>
+                        <div class="skill-info">
+                            <h4>JavaScript</h4>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 65%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon"><i class="fab fa-js"></i></div>
+                        <div class="skill-info">
+                            <h4>Python</h4>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 60%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Frameworks & Bibliotheken</h3>
+                <div class="skill-items">
+                    <div class="skill-item">
+                        <div class="skill-icon"><i class="fab fa-react"></i></div>
+                        <div class="skill-info">
+                            <h4>React</h4>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 50%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon"><i class="fab fa-bootstrap"></i></div>
+                        <div class="skill-info">
+                            <h4>Bootstrap</h4>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 40%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Tools & Technologien</h3>
+                <div class="skill-items">
+                    <div class="skill-item">
+                        <div class="skill-icon"><i class="fab fa-git-alt"></i></div>
+                        <div class="skill-info">
+                            <h4>Git</h4>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 10%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon"><i class="fab fa-figma"></i></div>
+                        <div class="skill-info">
+                            <h4>Figma</h4>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 20%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>Mou67</h3>
+                <p>Web-Entwickler & Designer</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-nav">
+                    <h4>Navigation</h4>
+                    <a href="#home">Start</a>
+                    <a href="#about">Über mich</a>
+                    <a href="#skills">Fähigkeiten</a>
+                </div>
+            </div>
+        </div>
+    </footer>    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/mobile-interactions.js"></script>
 </body>
 </html>

@@ -1,0 +1,147 @@
+/* Glass Morphism Effects for About Cards */
+
+/* Base glass style */
+.about-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);  /* For Safari */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Inner glow effect */
+.card-content, .card-hover-content {
+    position: relative;
+}
+
+/* Card content before - adds internal glossy reflection */
+.card-content::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle at center,
+        rgba(255, 255, 255, 0.15) 0%,
+        rgba(255, 255, 255, 0.05) 20%,
+        transparent 60%
+    );
+    z-index: -1;
+    transform: rotate(30deg);
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+/* Shimmer effect on cards */
+.about-card::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    width: 300%;
+    height: 150%;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.05) 45%,
+        rgba(255, 255, 255, 0.15) 50%,
+        rgba(255, 255, 255, 0.05) 55%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(30deg);
+    animation: shimmer 8s infinite linear;
+    z-index: 0;
+    pointer-events: none;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%) rotate(25deg);
+    }
+    100% {
+        transform: translateX(100%) rotate(25deg);
+    }
+}
+
+/* Enhanced orbiting sphere with trail effect */
+.about-card::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: radial-gradient(circle, var(--primary-color-light), var(--primary-color));
+    border-radius: 50%;
+    box-shadow: 
+        0 0 20px var(--primary-color),
+        0 0 40px rgba(255, 59, 48, 0.4);
+    animation: orbit-sphere 12s linear infinite;
+    z-index: 1;
+}
+
+/* Add orbit trail */
+.orbit-trail {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+/* Hover effects for modern cards */
+body:not(.touch-device) .about-card:hover {
+    box-shadow: 
+        0 12px 32px rgba(0, 0, 0, 0.4),
+        0 4px 10px rgba(255, 59, 48, 0.2);
+}
+
+/* Card content hover transition */
+.card-hover-content {
+    background: linear-gradient(135deg, var(--primary-color), #ff6b61);
+}
+
+/* Card hover content inner glow */
+.card-hover-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle at center,
+        rgba(255, 255, 255, 0.3) 0%,
+        rgba(255, 255, 255, 0.1) 30%,
+        transparent 70%
+    );
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Mobile-specific enhancements */
+@media screen and (max-width: 768px) {
+    .about-card {
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+    
+    .about-card::after {
+        width: 12px;
+        height: 12px;
+    }
+    
+    .orbit-trail {
+        width: 160px;
+        height: 160px;
+    }
+}
