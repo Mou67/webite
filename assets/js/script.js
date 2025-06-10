@@ -17,7 +17,58 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Contact form handling
     initContactForm();
+    
+    // Add safety check for skills section visibility
+    setTimeout(() => {
+        ensureSkillsVisibility();
+    }, 1000);
 });
+
+// Safety function to ensure skills section is visible
+function ensureSkillsVisibility() {
+    const skillsContainer = document.querySelector('.skills-container');
+    const skillItems = document.querySelectorAll('.skill-item');
+    
+    if (skillsContainer && skillItems.length > 0) {
+        // Check if any skill items are hidden (opacity 0 or display none)
+        const hiddenItems = Array.from(skillItems).filter(item => {
+            const style = window.getComputedStyle(item);
+            return style.opacity === '0' || style.display === 'none';
+        });
+        
+        // If there are hidden items and no scroll trigger is active, make them visible
+        if (hiddenItems.length > 0) {
+            console.log('Skills visibility issue detected, applying fallback');
+            
+            // Make all skill elements visible with a simple animation
+            skillItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateX(0)';
+                    
+                    // Animate progress bars
+                    const progressBar = item.querySelector('.skill-progress');
+                    if (progressBar && progressBar.style.width === '0px') {
+                        // Get the intended width from the HTML
+                        const intendedWidth = progressBar.getAttribute('data-width') || progressBar.style.width;
+                        if (intendedWidth) {
+                            progressBar.style.transition = 'width 1.2s ease-out';
+                            progressBar.style.width = intendedWidth;
+                        }
+                    }
+                }, index * 100);
+            });
+            
+            // Also ensure skill categories are visible
+            document.querySelectorAll('.skill-category').forEach((category, index) => {
+                setTimeout(() => {
+                    category.style.opacity = '1';
+                    category.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        }
+    }
+}
 
 // Custom cursor
 function initCustomCursor() {
@@ -296,6 +347,13 @@ function initNavigation() {
 
 // Scroll animations
 function initScrollAnimations() {
+    // Ensure ScrollTrigger is properly registered
+    if (!window.ScrollTrigger) {
+        console.warn('ScrollTrigger not loaded, using fallback animations');
+        initFallbackAnimations();
+        return;
+    }
+
     // Hero section animations
     gsap.from('.hero-text h1', {
         opacity: 0,
@@ -340,7 +398,8 @@ function initScrollAnimations() {
             duration: 1,
             scrollTrigger: {
                 trigger: header,
-                start: 'top 80%'
+                start: 'top 80%',
+                once: true
             }
         });
     });
@@ -354,36 +413,61 @@ function initScrollAnimations() {
             delay: index * 0.2,
             scrollTrigger: {
                 trigger: '.about-cards',
-                start: 'top 70%'
+                start: 'top 70%',
+                once: true
             }
         });
     });
     
-    // Skills animation
-    gsap.utils.toArray('.skill-item').forEach((item, index) => {
-        gsap.from(item, {
-            opacity: 0,
-            x: -50,
-            duration: 0.6,
-            delay: index * 0.1,
-            scrollTrigger: {
-                trigger: '.skills-container',
-                start: 'top 70%'
-            }
+    // Skills animation - optimized for better loading
+    const skillsContainer = document.querySelector('.skills-container');
+    if (skillsContainer) {
+        // Create a single ScrollTrigger for the entire skills section
+        ScrollTrigger.create({
+            trigger: skillsContainer,
+            start: 'top 80%',
+            onEnter: () => {
+                // Animate skill categories first
+                gsap.from('.skill-category', {
+                    opacity: 0,
+                    y: 30,
+                    duration: 0.8,
+                    stagger: 0.2,
+                    ease: 'power2.out'
+                });
+                
+                // Then animate individual skill items
+                gsap.utils.toArray('.skill-item').forEach((item, index) => {
+                    gsap.from(item, {
+                        opacity: 0,
+                        x: -30,
+                        duration: 0.6,
+                        delay: 0.4 + index * 0.08,
+                        ease: 'power2.out'
+                    });
+                    
+                    // Animate the skill progress bars with proper timing
+                    const progressBar = item.querySelector('.skill-progress');
+                    if (progressBar) {
+                        // Store original width
+                        const originalWidth = progressBar.style.width;
+                        
+                        // Set initial width to 0
+                        gsap.set(progressBar, { width: 0 });
+                        
+                        // Animate to original width
+                        gsap.to(progressBar, {
+                            width: originalWidth,
+                            duration: 1.2,
+                            delay: 0.8 + index * 0.08,
+                            ease: 'power2.out'
+                        });
+                    }
+                });
+            },
+            once: true // Ensure it only runs once
         });
-        
-        // Animate the skill progress bars
-        gsap.from(item.querySelector('.skill-progress'), {
-            width: 0,
-            duration: 1.5,
-            delay: 0.5 + index * 0.1,
-            ease: 'power2.out',
-            scrollTrigger: {
-                trigger: '.skills-container',
-                start: 'top 70%'
-            }
-        });
-    });
+    }
     
     // Project cards animation
     gsap.utils.toArray('.project-card').forEach((card, index) => {
@@ -394,7 +478,8 @@ function initScrollAnimations() {
             delay: index * 0.2,
             scrollTrigger: {
                 trigger: '.projects-container',
-                start: 'top 70%'
+                start: 'top 70%',
+                once: true
             }
         });
     });
@@ -408,7 +493,8 @@ function initScrollAnimations() {
             delay: index * 0.1,
             scrollTrigger: {
                 trigger: '.contact-info',
-                start: 'top 70%'
+                start: 'top 70%',
+                once: true
             }
         });
     });
@@ -419,8 +505,48 @@ function initScrollAnimations() {
         duration: 0.8,
         scrollTrigger: {
             trigger: '.contact-form-container',
-            start: 'top 70%'
+            start: 'top 70%',
+            once: true
         }
+    });
+}
+
+// Fallback animations if ScrollTrigger fails to load
+function initFallbackAnimations() {
+    // Simple intersection observer fallback
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                
+                // Handle skills progress bars
+                if (entry.target.classList.contains('skills-container')) {
+                    const progressBars = entry.target.querySelectorAll('.skill-progress');
+                    progressBars.forEach((bar, index) => {
+                        setTimeout(() => {
+                            bar.style.transition = 'width 1.2s ease-out';
+                            // Width is already set in HTML
+                        }, 500 + index * 80);
+                    });
+                }
+                
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    // Observe elements that need animation
+    document.querySelectorAll('.section-header, .about-card, .skills-container, .project-card, .contact-item, .contact-form').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+        observer.observe(el);
     });
 }
 

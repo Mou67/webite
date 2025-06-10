@@ -602,6 +602,11 @@ body:not(.touch-device) .about-card:hover {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 3rem;
+    opacity: 1; /* Ensure initial visibility */
+}
+
+.skill-category {
+    opacity: 1; /* Ensure initial visibility */
 }
 
 .skill-category h3 {
@@ -629,6 +634,8 @@ body:not(.touch-device) .about-card:hover {
 .skill-item {
     display: flex;
     align-items: center;
+    opacity: 1; /* Ensure initial visibility */
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .skill-icon {
@@ -667,6 +674,8 @@ body:not(.touch-device) .about-card:hover {
     border-radius: 10px;
     position: relative;
     overflow: hidden;
+    min-width: 0; /* Ensure it can animate from 0 */
+    transition: width 1.2s ease-out; /* CSS fallback animation */
 }
 
 .skill-progress::after {
