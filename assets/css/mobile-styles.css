@@ -208,6 +208,48 @@
         height: 180px !important;
     }
     
+    /* Projects section */
+    .projects-container {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .project-image {
+        height: 180px !important;
+    }
+    
+    .project-info {
+        padding: 1rem !important;
+    }
+    
+    .project-tech {
+        gap: 0.3rem !important;
+    }
+    
+    .tech-tag {
+        font-size: 0.75rem !important;
+        padding: 0.2rem 0.6rem !important;
+    }
+    
+    .project-buttons {
+        flex-direction: column !important;
+        gap: 0.5rem !important;
+    }
+    
+    .project-btn {
+        font-size: 0.85rem !important;
+        padding: 0.4rem 0.8rem !important;
+    }
+    
+    /* Projects CTA */
+    .projects-cta {
+        margin-top: 2rem !important;
+        padding: 1.5rem !important;
+    }
+    
+    .projects-cta p {
+        font-size: 1rem !important;
+    }
+    
     /* Contact section */
     .contact-content {
         gap: 2rem !important;

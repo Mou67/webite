@@ -1,27 +1,44 @@
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', () => {
+    // Check if GSAP is loaded
+    if (typeof gsap === 'undefined') {
+        console.error('GSAP not loaded, using fallback animations');
+        initFallbackAnimations();
+        return;
+    }
+    
     // Initialize GSAP ScrollTrigger
     gsap.registerPlugin(ScrollTrigger);
     
-    // Custom cursor
-    initCustomCursor();
-    
-    // Navigation menu toggle
-    initNavigation();
-    
-    // Scroll animations
-    initScrollAnimations();
-    
-    // Interactive elements
-    initInteractiveElements();
-    
-    // Contact form handling
-    initContactForm();
-    
-    // Add safety check for skills section visibility
+    // Wait a moment to ensure all scripts are loaded
     setTimeout(() => {
-        ensureSkillsVisibility();
-    }, 1000);
+        // Custom cursor
+        initCustomCursor();
+        
+        // Navigation menu toggle
+        initNavigation();
+        
+        // Scroll animations
+        initScrollAnimations();
+        
+        // Interactive elements
+        initInteractiveElements();
+        
+        // Contact form handling
+        initContactForm();
+        
+        // Discord popup handling
+        initDiscordPopup();
+        
+        // Initialize project previews
+        initProjectPreviews();
+        
+        // Add safety check for skills section visibility
+        setTimeout(() => {
+            ensureSkillsVisibility();
+            ensureProjectsVisibility();
+        }, 1000);
+    }, 100);
 });
 
 // Safety function to ensure skills section is visible
@@ -68,6 +85,164 @@ function ensureSkillsVisibility() {
             });
         }
     }
+}
+
+// Safety function to ensure projects section is visible
+function ensureProjectsVisibility() {
+    const projectsContainer = document.querySelector('.projects-container');
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    if (projectsContainer && projectCards.length > 0) {
+        // Check if any project cards are hidden (opacity 0 or display none)
+        const hiddenCards = Array.from(projectCards).filter(card => {
+            const style = window.getComputedStyle(card);
+            return style.opacity === '0' || style.display === 'none';
+        });
+        
+        // If there are hidden cards and no scroll trigger is active, make them visible
+        if (hiddenCards.length > 0) {
+            console.log('Projects visibility issue detected, applying fallback');
+            
+            // Make all project cards visible with a simple animation
+            projectCards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 150);
+            });
+        }
+    }
+}
+
+// Discord Popup functionality
+function initDiscordPopup() {
+    const discordBtn = document.querySelector('.secondary-btn');
+    const discordPopup = document.getElementById('discordPopup');
+    const closeBtn = document.querySelector('.discord-close-btn');
+    const discordAvatar = document.querySelector('.discord-avatar-container');
+    
+    // Open Discord popup when secondary button is clicked
+    if (discordBtn && discordPopup) {
+        discordBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            discordPopup.classList.add('active');
+            
+            // Add haptic feedback if available
+            if (window.navigator && window.navigator.vibrate) {
+                window.navigator.vibrate(50);
+            }
+        });
+    }
+    
+    // Close popup when close button is clicked
+    if (closeBtn && discordPopup) {
+        closeBtn.addEventListener('click', () => {
+            discordPopup.classList.remove('active');
+        });
+    }
+    
+    // Close popup when clicking outside the content
+    if (discordPopup) {
+        discordPopup.addEventListener('click', (e) => {
+            if (e.target === discordPopup) {
+                discordPopup.classList.remove('active');
+            }
+        });
+    }
+    
+    // Redirect to Discord when avatar is clicked
+    if (discordAvatar) {
+        discordAvatar.addEventListener('click', () => {
+            // Add click animation
+            discordAvatar.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                discordAvatar.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    discordAvatar.style.transform = '';
+                    // Redirect to Discord
+                    window.open('https://discord.gg/UKYn38QE', '_blank');
+                }, 150);
+            }, 100);
+        });
+    }
+    
+    // Close popup with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && discordPopup.classList.contains('active')) {
+            discordPopup.classList.remove('active');
+        }
+    });
+    
+    // Prevent scrolling when popup is open
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.attributeName === 'class') {
+                const target = mutation.target;
+                if (target.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            }
+        });
+    });
+    
+    if (discordPopup) {
+        observer.observe(discordPopup, { attributes: true });
+    }
+}
+
+// Initialize project previews and handle missing images
+function initProjectPreviews() {
+    const projectImages = document.querySelectorAll('.project-image img, .project-preview img');
+    
+    projectImages.forEach((img, index) => {
+        img.addEventListener('error', function() {
+            // Create a placeholder if image doesn't exist
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = 400;
+            canvas.height = 250;
+            
+            // Create gradient background
+            const gradient = ctx.createLinearGradient(0, 0, 400, 250);
+            gradient.addColorStop(0, '#ff3b30');
+            gradient.addColorStop(1, '#ff6b61');
+            
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 400, 250);
+            
+            // Add text
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 24px Inter, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('Projekt ' + (Math.floor(index / 2) + 1), 200, 120);
+            ctx.font = '16px Inter, sans-serif';
+            ctx.fillText('Bild wird geladen...', 200, 150);
+            
+            // Replace the image source with the canvas
+            this.src = canvas.toDataURL();
+        });
+    });
+    
+    // Add lazy loading intersection observer
+    const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                    imageObserver.unobserve(img);
+                }
+            }
+        });
+    });
+    
+    // Observe all lazy-loaded images
+    document.querySelectorAll('img[data-src]').forEach(img => {
+        imageObserver.observe(img);
+    });
 }
 
 // Custom cursor
@@ -469,20 +644,28 @@ function initScrollAnimations() {
         });
     }
     
-    // Project cards animation
-    gsap.utils.toArray('.project-card').forEach((card, index) => {
-        gsap.from(card, {
-            opacity: 0,
-            y: 50,
-            duration: 0.8,
-            delay: index * 0.2,
-            scrollTrigger: {
-                trigger: '.projects-container',
-                start: 'top 70%',
-                once: true
-            }
+    // Project cards animation - optimized for better loading
+    const projectsContainer = document.querySelector('.projects-container');
+    if (projectsContainer) {
+        // Create a single ScrollTrigger for the entire projects section
+        ScrollTrigger.create({
+            trigger: projectsContainer,
+            start: 'top 80%',
+            onEnter: () => {
+                // Animate project cards with staggered timing
+                gsap.utils.toArray('.project-card').forEach((card, index) => {
+                    gsap.from(card, {
+                        opacity: 0,
+                        y: 50,
+                        duration: 0.8,
+                        delay: index * 0.15,
+                        ease: 'power2.out'
+                    });
+                });
+            },
+            once: true // Ensure it only runs once
         });
-    });
+    }
     
     // Contact section animation
     gsap.utils.toArray('.contact-item').forEach((item, index) => {
@@ -542,7 +725,7 @@ function initFallbackAnimations() {
     }, observerOptions);
     
     // Observe elements that need animation
-    document.querySelectorAll('.section-header, .about-card, .skills-container, .project-card, .contact-item, .contact-form').forEach(el => {
+    document.querySelectorAll('.section-header, .about-card, .skills-container, .projects-container, .project-card, .contact-item, .contact-form').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
         el.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
@@ -625,6 +808,8 @@ function initInteractiveElements() {
     const projectCards = document.querySelectorAll('.project-card');
     
     projectCards.forEach(card => {
+        const preview = card.querySelector('.project-preview');
+        
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
@@ -642,6 +827,22 @@ function initInteractiveElements() {
                 ease: 'power2.out',
                 duration: 0.3
             });
+            
+            // Position preview based on mouse position
+            if (preview && window.innerWidth > 1200) {
+                const cardCenterX = rect.width / 2;
+                const cardCenterY = rect.height / 2;
+                
+                // Calculate preview position
+                let previewX = x > cardCenterX ? -320 : rect.width + 20;
+                let previewY = Math.max(-20, Math.min(y - 100, rect.height - 180));
+                
+                gsap.set(preview, {
+                    right: x > cardCenterX ? -320 : 'auto',
+                    left: x > cardCenterX ? 'auto' : rect.width + 20,
+                    top: previewY
+                });
+            }
         });
         
         card.addEventListener('mouseleave', () => {
@@ -650,6 +851,21 @@ function initInteractiveElements() {
                 rotateY: 0,
                 duration: 0.5,
                 ease: 'elastic.out(1, 0.5)'
+            });
+        });
+        
+        // Enhanced click animation
+        card.addEventListener('mousedown', () => {
+            gsap.to(card, {
+                scale: 0.98,
+                duration: 0.1
+            });
+        });
+        
+        card.addEventListener('mouseup', () => {
+            gsap.to(card, {
+                scale: 1,
+                duration: 0.1
             });
         });
     });

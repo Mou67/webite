@@ -822,6 +822,225 @@ body:not(.touch-device) .about-card:hover {
     text-align: center;
 }
 
+/* Projects Section */
+.projects {
+    padding: 100px 5%;
+    background-color: rgba(20, 20, 20, 0.7);
+    position: relative;
+}
+
+.projects-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    opacity: 1; /* Ensure initial visibility */
+}
+
+.project-card {
+    background-color: var(--bg-card);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: var(--transition);
+    transform: translateY(0);
+    position: relative;
+    cursor: pointer;
+    opacity: 1; /* Ensure initial visibility */
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px var(--glow-color);
+}
+
+.project-image {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.1);
+}
+
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
+
+.project-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.project-btn {
+    padding: 0.5rem 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 5px;
+    transition: var(--transition);
+    transform: translateY(20px);
+    opacity: 0;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.project-card:hover .project-btn {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.project-btn:nth-child(2) {
+    transition-delay: 0.1s;
+}
+
+.project-btn:hover {
+    background-color: white;
+    color: var(--bg-dark);
+    transform: translateY(-2px);
+}
+
+.project-info {
+    padding: 1.5rem;
+}
+
+.project-info h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+}
+
+.project-info p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.project-tech {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.tech-tag {
+    padding: 0.3rem 0.8rem;
+    background-color: rgba(255, 59, 48, 0.1);
+    border-radius: 50px;
+    font-size: 0.8rem;
+    color: var(--primary-color);
+    border: 1px solid rgba(255, 59, 48, 0.2);
+    transition: var(--transition);
+}
+
+.tech-tag:hover {
+    background-color: rgba(255, 59, 48, 0.2);
+    transform: translateY(-1px);
+}
+
+/* Project Preview Feature */
+.project-preview {
+    position: absolute;
+    top: -20px;
+    right: -300px;
+    width: 280px;
+    height: 200px;
+    background-color: var(--bg-card);
+    border-radius: 10px;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.8);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 10;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    border: 2px solid rgba(255, 59, 48, 0.3);
+    pointer-events: none;
+}
+
+.project-preview::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 59, 48, 0.1), transparent);
+    z-index: 1;
+}
+
+.project-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.project-card:hover .project-preview {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+    right: -320px;
+}
+
+.project-card:hover .project-preview img {
+    transform: scale(1.05);
+}
+
+/* Responsive adjustments for project previews */
+@media screen and (max-width: 1400px) {
+    .project-card:hover .project-preview {
+        right: -280px;
+        width: 250px;
+        height: 180px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .project-preview {
+        display: none; /* Hide previews on smaller screens */
+    }
+}
+
+.projects-cta {
+    margin-top: 3rem;
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.projects-cta p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
 /* Contact Section */
 .contact {
     padding: 100px 5%;
@@ -935,6 +1154,180 @@ body:not(.touch-device) .about-card:hover {
     outline: none;
     border-color: var(--primary-color);
     box-shadow: 0 0 0 2px rgba(255, 59, 48, 0.2);
+}
+
+/* Discord Popup */
+.discord-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.discord-popup.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.discord-popup-content {
+    background: #36393f; /* Discord dark theme */
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 400px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
+.discord-popup.active .discord-popup-content {
+    transform: scale(1);
+}
+
+.discord-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2rem;
+    color: #b9bbbe;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    font-weight: 300;
+}
+
+.discord-close-btn:hover {
+    color: #ffffff;
+}
+
+.discord-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.discord-header h3 {
+    color: #ffffff;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.discord-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.discord-avatar-container {
+    position: relative;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.discord-avatar-container:hover {
+    transform: scale(1.05);
+}
+
+.discord-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid #7289da; /* Discord blurple */
+    object-fit: cover;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.discord-avatar-container:hover .discord-avatar {
+    border-color: #5865f2; /* Discord new blurple */
+    box-shadow: 0 0 20px rgba(88, 101, 242, 0.5);
+}
+
+.discord-status {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 24px;
+    height: 24px;
+    background-color: #43b581; /* Discord green (online) */
+    border-radius: 50%;
+    border: 4px solid #36393f;
+}
+
+.discord-info {
+    text-align: center;
+}
+
+.discord-info h4 {
+    color: #ffffff;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.discord-info p {
+    color: #b9bbbe;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.discord-actions {
+    text-align: center;
+}
+
+.discord-join-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #7289da, #5865f2);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(114, 137, 218, 0.3);
+}
+
+.discord-join-btn:hover {
+    background: linear-gradient(135deg, #5865f2, #4752c4);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(114, 137, 218, 0.4);
+}
+
+.discord-join-btn i {
+    font-size: 1.2rem;
+}
+
+/* Mobile adjustments for Discord popup */
+@media screen and (max-width: 768px) {
+    .discord-popup-content {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    
+    .discord-avatar {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .discord-status {
+        width: 20px;
+        height: 20px;
+        bottom: 6px;
+        right: 6px;
+    }
 }
 
 /* Footer */
