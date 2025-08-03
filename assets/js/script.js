@@ -160,7 +160,7 @@ function initDiscordPopup() {
                 setTimeout(() => {
                     discordAvatar.style.transform = '';
                     // Redirect to Discord
-                    window.open('https://discord.gg/UKYn38QE', '_blank');
+                    window.open('https://discord.com/users/566339117466517505', '_blank');
                 }, 150);
             }, 100);
         });
