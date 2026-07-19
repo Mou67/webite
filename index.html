@@ -1,438 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mou67</title>    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/mobile-styles.css">
-    <link rel="stylesheet" href="assets/css/glass-effects.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Open Graph Meta Tags for Discord Embed -->
-    <meta property="og:title" content="Mou67 - Web Developer & Designer" />
-    <meta property="og:description" content="Modern, interactive, and user-friendly web experiences by Mou67." />
-    <meta property="og:image" content="https://mou67.com/assets/images/profile.png" />
-    <meta property="og:url" content="https://mou67.com/" />
-    <meta property="og:type" content="website" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mou67 — Front-end Developer</title>
+  <meta name="description" content="Portfolio of Mou67, an Austrian front-end developer building playful, interactive web experiences." />
+  <meta name="theme-color" content="#0E0E10" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Open Graph (Discord embed) -->
+  <meta property="og:title" content="Mou67 — Front-end Developer" />
+  <meta property="og:description" content="Building playful, interactive web experiences." />
+  <meta property="og:image" content="https://mou67.com/images/profile.png" />
+  <meta property="og:url" content="https://mou67.com/" />
+  <meta property="og:type" content="website" />
 </head>
 <body>
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
-    
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="logo">Mou67</div>
-        <div class="nav-links">
-            <a href="#home" class="nav-link">Home</a>
-            <a href="#about" class="nav-link">About Me</a>
-            <a href="#skills" class="nav-link">Skills</a>
-            <a href="#projects" class="nav-link">Projects</a>
-        </div>
-        <div class="menu-toggle">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </div>
+  <div class="cursor" data-cursor aria-hidden="true">
+    <div class="cursor__dot" data-cursor-dot></div>
+    <div class="cursor__ring" data-cursor-ring><span class="cursor__label" data-cursor-label>View</span></div>
+  </div>
+
+  <div class="webgl" data-webgl aria-hidden="true"></div>
+
+  <header class="nav" data-nav>
+    <a class="nav__logo" href="#home" data-scroll-to>Mou67</a>
+    <nav class="nav__links" aria-label="Primary">
+      <a class="nav__link" href="#about" data-scroll-to>About</a>
+      <a class="nav__link" href="#skills" data-scroll-to>Skills</a>
+      <a class="nav__link" href="#projects" data-scroll-to>Projects</a>
+      <a class="nav__link" href="#contact" data-scroll-to>Contact</a>
     </nav>
+    <button class="nav__toggle" data-menu-toggle aria-expanded="false" aria-controls="menu">
+      <span class="nav__toggle-line"></span>
+      <span class="nav__toggle-line"></span>
+      <span class="visually-hidden">Menu</span>
+    </button>
+  </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1 class="glowing-text">Hello, I'm <span class="highlight">Mou67</span></h1>
-                <p class="subtitle">Austrian & passionate about front-end development in my free time</p>
-                <p class="description">I create modern, interactive, and user-friendly web experiences</p>
-                <div class="cta-buttons">
-                    <a href="#projects" class="btn primary-btn">My Work <i class="fas fa-arrow-right"></i></a>
-                    <a href="#contact" class="btn secondary-btn">Want to contact me? <i class="fas fa-envelope"></i></a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="image-container">
-                    <div class="glow-effect"></div>
-                    <img src="assets/images/profile.png" alt="Profile Picture">
-                </div>
-            </div>
+  <div class="menu" id="menu" data-menu>
+    <nav class="menu__nav" aria-label="Menu">
+      <a class="menu__link" href="#home" data-scroll-to><span>Home</span></a>
+      <a class="menu__link" href="#about" data-scroll-to><span>About</span></a>
+      <a class="menu__link" href="#skills" data-scroll-to><span>Skills</span></a>
+      <a class="menu__link" href="#projects" data-scroll-to><span>Projects</span></a>
+      <a class="menu__link" href="#contact" data-scroll-to><span>Contact</span></a>
+    </nav>
+  </div>
+
+  <main>
+    <section class="hero" id="home" data-hero>
+      <div class="hero__inner">
+        <p class="hero__label" data-hero-label>Mou67 — Front-end developer, Austria</p>
+        <h1 class="hero__title" data-hero-title>
+          <span class="hero__line">Building <em>playful</em></span>
+          <span class="hero__line">web experiences</span>
+        </h1>
+        <p class="hero__sub" data-hero-sub>Hobbyist front-end developer crafting modern, interactive and user-friendly websites.</p>
+        <div class="hero__cta" data-hero-cta>
+          <a class="btn btn--primary" href="#projects" data-scroll-to>See my work</a>
+          <a class="btn btn--ghost" href="#contact" data-scroll-to>Get in touch</a>
         </div>
-        <div class="scroll-indicator">
-            <p>Scroll down</p>
-            <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="grid-background"></div>
+      </div>
+      <div class="hero__hint" data-hero-hint aria-hidden="true">
+        <span>Scroll</span>
+        <span class="hero__hint-line"></span>
+      </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="section-header">
-            <h2>About <span class="highlight">Me</span></h2>
-            <div class="section-line"></div>
-        </div>        <div class="about-content">
-            <div class="about-text-center">
-                <p>Hi, I'm Mou67, nickname Mou, a hobbyist front-end developer. I also play games like Star Citizen and much more, and I enjoy watching anime.</p>
-            </div>
-            
-            <div class="about-cards">                <div class="about-card">
-                    <div class="orbit-trail"></div>
-                    <div class="card-content">
-                        <div class="card-icon"><i class="fas fa-code"></i></div>
-                        <h3>Web Development</h3>
-                        <p>Creating modern, responsive websites with the latest technologies</p>
-                    </div>
-                    <div class="card-hover-content">
-                        <h3>My Expertise</h3>
-                        <ul>
-                            <li><i class="fas fa-check"></i> HTML5 & CSS3</li>
-                            <li><i class="fas fa-check"></i> Responsive Design</li>
-                            <li><i class="fas fa-check"></i> JavaScript</li>
-                        </ul>
-                    </div>
-                </div>                <div class="about-card">
-                    <div class="orbit-trail"></div>
-                    <div class="card-content">
-                        <div class="card-icon"><i class="fas fa-paint-brush"></i></div>
-                        <h3>UI/UX Design</h3>
-                        <p>User-friendly and visually appealing design solutions</p>
-                    </div>
-                    <div class="card-hover-content">
-                        <h3>Design Tools</h3>
-                        <ul>
-                            <li><i class="fas fa-check"></i> Modern UI Elements</li>
-                            <li><i class="fas fa-check"></i> Intuitive Navigation</li>
-                            <li><i class="fas fa-check"></i> Visual Hierarchy</li>
-                        </ul>
-                    </div>
-                </div>                <div class="about-card">
-                    <div class="orbit-trail"></div>
-                    <div class="card-content">
-                        <div class="card-icon"><i class="fas fa-mobile-alt"></i></div>
-                        <h3>Mobile Optimization</h3>
-                        <p>Perfect display on all devices and screen sizes</p>
-                    </div>
-                    <div class="card-hover-content">
-                        <h3>Optimized for</h3>
-                        <ul>
-                            <li><i class="fas fa-check"></i> Smartphones & Tablets</li>
-                            <li><i class="fas fa-check"></i> Desktops & Notebooks</li>
-                            <li><i class="fas fa-check"></i> Various Browsers</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <section class="section about" id="about">
+      <header class="section__head">
+        <span class="section__index">01</span>
+        <h2 class="section__title">About</h2>
+      </header>
+      <p class="about__statement" data-statement>
+        I'm Mou — a hobbyist front-end developer from Austria. When I'm not
+        building things for the web, I'm probably flying through the 'verse in
+        Star Citizen or catching up on anime.
+      </p>
+      <ul class="about__rows" data-about-rows>
+        <li class="about__row">
+          <span class="about__num">01</span>
+          <h3 class="about__row-title">Web Development</h3>
+          <p class="about__row-text">Hand-crafted front-ends with HTML, CSS and JavaScript — responsive by default.</p>
+        </li>
+        <li class="about__row">
+          <span class="about__num">02</span>
+          <h3 class="about__row-title">UI &amp; UX</h3>
+          <p class="about__row-text">Clean layouts, meaningful motion and interfaces that feel good to use.</p>
+        </li>
+        <li class="about__row">
+          <span class="about__num">03</span>
+          <h3 class="about__row-title">Mobile-first</h3>
+          <p class="about__row-text">Touch-friendly experiences that hold up on any screen size.</p>
+        </li>
+      </ul>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="section-header">
-            <h2>My <span class="highlight">Skills</span></h2>
-            <div class="section-line"></div>
+    <section class="section skills" id="skills">
+      <div class="skills__marquee" data-marquee aria-hidden="true">
+        <div class="skills__marquee-track">
+          <span>HTML — CSS — JavaScript — Python — React — Bootstrap — Git — Figma —&nbsp;</span>
+          <span>HTML — CSS — JavaScript — Python — React — Bootstrap — Git — Figma —&nbsp;</span>
         </div>
-        <div class="skills-container">
-            <div class="skill-category">
-                <h3>Programming Languages</h3>
-                <div class="skill-items">
-                    <div class="skill-item">
-                        <div class="skill-icon"><i class="fab fa-html5"></i></div>
-                        <div class="skill-info">
-                            <h4>HTML5</h4>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 80%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon"><i class="fab fa-css3-alt"></i></div>
-                        <div class="skill-info">
-                            <h4>CSS3</h4>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 90%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon"><i class="fab fa-js"></i></div>
-                        <div class="skill-info">
-                            <h4>JavaScript</h4>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 65%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon"><i class="fab fa-js"></i></div>
-                        <div class="skill-info">
-                            <h4>Python</h4>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 60%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h3>Frameworks & Libraries</h3>
-                <div class="skill-items">
-                    <div class="skill-item">
-                        <div class="skill-icon"><i class="fab fa-react"></i></div>
-                        <div class="skill-info">
-                            <h4>React</h4>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 50%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon"><i class="fab fa-bootstrap"></i></div>
-                        <div class="skill-info">
-                            <h4>Bootstrap</h4>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 40%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h3>Tools & Technologies</h3>
-                <div class="skill-items">
-                    <div class="skill-item">
-                        <div class="skill-icon"><i class="fab fa-git-alt"></i></div>
-                        <div class="skill-info">
-                            <h4>Git</h4>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 10%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon"><i class="fab fa-figma"></i></div>
-                        <div class="skill-info">
-                            <h4>Figma</h4>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 20%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <header class="section__head">
+        <span class="section__index">02</span>
+        <h2 class="section__title">Skills</h2>
+      </header>
+      <div class="skills__tiers" data-skills-tiers>
+        <div class="skills__tier">
+          <h3 class="skills__tier-label">Daily drivers</h3>
+          <ul class="skills__pills">
+            <li class="skills__pill">HTML</li>
+            <li class="skills__pill">CSS</li>
+            <li class="skills__pill">JavaScript</li>
+          </ul>
         </div>
+        <div class="skills__tier">
+          <h3 class="skills__tier-label">Getting comfortable</h3>
+          <ul class="skills__pills">
+            <li class="skills__pill">Python</li>
+            <li class="skills__pill">React</li>
+            <li class="skills__pill">Bootstrap</li>
+          </ul>
+        </div>
+        <div class="skills__tier">
+          <h3 class="skills__tier-label">Currently learning</h3>
+          <ul class="skills__pills">
+            <li class="skills__pill">Git</li>
+            <li class="skills__pill">Figma</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="section-header">
-            <h2>My <span class="highlight">Work</span></h2>
-            <div class="section-line"></div>
-        </div>
-        <div class="projects-container">
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="assets/images/user_finder.png" alt="Project 1" loading="lazy">
-                    <div class="project-overlay">
-                        <div class="project-buttons">
-                            <a href="https://mou67.github.io/userfinder/" class="project-btn" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                            <a href="https://github.com/Mou67/userfinder" class="project-btn" target="_blank">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-info">
-                    <h3>User Finder</h3>
-                    <p>A professional Open Source Intelligence (OSINT) tool for searching usernames and profiles across the internet.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">JavaScript</span>
-                    </div>
-                </div>
-                <div class="project-preview">
-                    <img src="assets/images/user_finder.png" alt="Portfolio Website Preview">
-                </div>
+    <section class="section projects" id="projects">
+      <header class="section__head">
+        <span class="section__index">03</span>
+        <h2 class="section__title">Projects</h2>
+      </header>
+      <ul class="projects__list">
+        <li class="project" data-project>
+          <a class="project__media" data-project-media href="https://mou67.github.io/userfinder/" target="_blank" rel="noopener" aria-label="Open User Finder (live site)">
+            <img src="/src/assets/projects/user-finder.webp" alt="Screenshot of the User Finder web app" width="1200" height="1212" loading="lazy" decoding="async" />
+          </a>
+          <div class="project__body">
+            <span class="project__index">01</span>
+            <h3 class="project__title">User Finder</h3>
+            <p class="project__desc">An open-source OSINT tool that searches usernames and public profiles across dozens of platforms.</p>
+            <ul class="project__tags">
+              <li>HTML</li><li>CSS</li><li>JavaScript</li>
+            </ul>
+            <div class="project__links">
+              <a class="project__link" href="https://mou67.github.io/userfinder/" target="_blank" rel="noopener">Live site</a>
+              <a class="project__link" href="https://github.com/Mou67/userfinder" target="_blank" rel="noopener">Source code</a>
             </div>
-
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="assets/images/logger.png" alt="Project 1" loading="lazy">
-                    <div class="project-overlay">
-                        <div class="project-buttons">
-                            <a href="https://mou67.github.io/website_test/" class="project-btn" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-info">
-                    <h3>Just some shit i tested</h3>
-                    <p>just an website where google logs all you data welcome to the internet</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">JavaScript</span>
-                    </div>
-                </div>
-                <div class="project-preview">
-                    <img src="assets/images/project2-preview.jpg" alt="E-Commerce Dashboard Preview">
-                </div>
+          </div>
+        </li>
+        <li class="project" data-project>
+          <a class="project__media" data-project-media href="https://mou67.github.io/website_test/" target="_blank" rel="noopener" aria-label="Open Data Awareness Demo (live site)">
+            <img src="/src/assets/projects/logger.webp" alt="Screenshot of the Data Awareness Demo" width="860" height="860" loading="lazy" decoding="async" />
+          </a>
+          <div class="project__body">
+            <span class="project__index">02</span>
+            <h3 class="project__title">Data Awareness Demo</h3>
+            <p class="project__desc">An experiment that shows visitors how much data an ordinary website can silently collect about them.</p>
+            <ul class="project__tags">
+              <li>HTML</li><li>CSS</li><li>JavaScript</li>
+            </ul>
+            <div class="project__links">
+              <a class="project__link" href="https://mou67.github.io/website_test/" target="_blank" rel="noopener">Live site</a>
             </div>
-
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="assets/images/old_website.png" alt="Project 3" loading="lazy">
-                    <div class="project-overlay">
-                        <div class="project-buttons">
-                            <a href="https://mou67.github.io/odl_website/" class="project-btn" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-info">
-                    <h3>my old website</h3>
-                    <p>i dont know what to say more then it was a pain to make this in my time</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">JavaScript</span>
-                    </div>
-                </div>
-                <div class="project-preview">
-                    <img src="assets/images/project3-preview.jpg" alt="Weather App Preview">
-                </div>
+          </div>
+        </li>
+        <li class="project" data-project>
+          <a class="project__media" data-project-media href="https://mou67.github.io/odl_website/" target="_blank" rel="noopener" aria-label="Open Portfolio v1 (live site)">
+            <img src="/src/assets/projects/old-website.webp" alt="Screenshot of the first version of this portfolio" width="1200" height="736" loading="lazy" decoding="async" />
+          </a>
+          <div class="project__body">
+            <span class="project__index">03</span>
+            <h3 class="project__title">Portfolio v1</h3>
+            <p class="project__desc">The first version of this site — kept online as a reminder of where it all started.</p>
+            <ul class="project__tags">
+              <li>HTML</li><li>CSS</li>
+            </ul>
+            <div class="project__links">
+              <a class="project__link" href="https://mou67.github.io/odl_website/" target="_blank" rel="noopener">Live site</a>
             </div>
-
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="assets/images/project4.jpg" alt="Project 4" loading="lazy">
-                    <div class="project-overlay">
-                        <div class="project-buttons">
-                            <a href="#" class="project-btn" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                            <a href="#" class="project-btn" target="_blank">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-info">
-                    <h3>In Progress</h3>
-                    <p>. . .</p>
-                    <div class="project-tech">
-                        <span class="tech-tag"></span>
-                        <span class="tech-tag"></span>
-                        <span class="tech-tag"></span>
-                        <span class="tech-tag"></span>
-                    </div>
-                </div>
-                <div class="project-preview">
-                    <img src="assets/images/project4-preview.jpg" alt="Task Manager Preview">
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="assets/images/project5.jpg" alt="Project 5" loading="lazy">
-                    <div class="project-overlay">
-                        <div class="project-buttons">
-                            <a href="#" class="project-btn" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                            <a href="#" class="project-btn" target="_blank">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-info">
-                    <h3>In Progress</h3>
-                    <p>. . .</p>
-                    <div class="project-tech">
-                        <span class="tech-tag"></span>
-                        <span class="tech-tag"></span>
-                        <span class="tech-tag"></span>
-                        <span class="tech-tag"></span>
-                    </div>
-                </div>
-                <div class="project-preview">
-                    <img src="assets/images/project5-preview.jpg" alt="Restaurant Website Preview">
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="assets/images/project6.jpg" alt="Project 6" loading="lazy">
-                    <div class="project-overlay">
-                        <div class="project-buttons">
-                            <a href="#" class="project-btn" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                            <a href="#" class="project-btn" target="_blank">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-info">
-                    <h3>In Progress</h3>
-                    <p>. . .</p>
-                    <div class="project-tech">
-                        <span class="tech-tag"></span>
-                        <span class="tech-tag"></span>
-                        <span class="tech-tag"></span>
-                        <span class="tech-tag"></span>
-                    </div>
-                </div>
-                <div class="project-preview">
-                    <img src="assets/images/project6-preview.jpg" alt="Music Player Preview">
-                </div>
-            </div>
-        </div>
+          </div>
+        </li>
+      </ul>
     </section>
 
-    <!-- Discord Popup -->
-    <div id="discordPopup" class="discord-popup">
-        <div class="discord-popup-content">
-            <div class="discord-close-btn">&times;</div>
-            <div class="discord-header">
-                <h3>Discord Contact</h3>
-            </div>
-            <div class="discord-profile">
-                <div class="discord-avatar-container">
-                    <img src="assets/images/profile.png" alt="Discord Profile Picture" class="discord-avatar">
-                    <div class="discord-status"></div>
-                </div>
-                <div class="discord-info">
-                    <h4>Mou67</h4>
-                    <p>Click on my profile picture to join my Discord server!</p>
-                </div>
-            </div>
-        </div>
-    </div>
+    <section class="section contact" id="contact">
+      <p class="contact__kicker" data-contact-kicker>Have an idea, a question, or just want to say hi?</p>
+      <h2 class="contact__title" data-contact-title>Let's <em>talk</em></h2>
+      <div class="contact__actions" data-contact-actions>
+        <a class="btn btn--primary btn--magnetic" data-magnetic href="https://discord.com/users/566339117466517505" target="_blank" rel="noopener">Message me on Discord</a>
+        <a class="contact__link" href="https://github.com/Mou67" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </section>
+  </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-logo">
-                <h3>Mou67</h3>
-                <p>Web Developer & Designer</p>
-            </div>
-            <div class="footer-links">
-                <div class="footer-nav">
-                    <h4>Navigation</h4>
-                    <a href="#home">Home</a>
-                    <a href="#about">About Me</a>
-                    <a href="#skills">Skills</a>
-                </div>
-            </div>
-        </div>
-    </footer>    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
-    <script src="assets/js/script.js"></script>
-    <script src="assets/js/mobile-interactions.js"></script>
+  <footer class="footer">
+    <span class="footer__item">© 2026 Mou67</span>
+    <span class="footer__item footer__time"><span data-local-time>--:--</span> — Austria</span>
+    <button class="footer__item footer__top" data-back-to-top>Back to top</button>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
 </body>
 </html>

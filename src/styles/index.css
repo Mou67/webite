@@ -1,0 +1,9 @@
+@import './tokens.css';
+@import './base.css';
+@import './components/nav.css';
+@import './components/cursor.css';
+@import './sections/hero.css';
+@import './sections/about.css';
+@import './sections/skills.css';
+@import './sections/projects.css';
+@import './sections/contact.css';

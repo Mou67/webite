@@ -1,0 +1,126 @@
+/* Fixed WebGL canvas layer behind the hero */
+.webgl {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-canvas);
+}
+
+.webgl canvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* Reduced motion: the canvas shows one static frame and scrolls away
+   with the hero instead of sticking to the viewport */
+html.static-webgl .webgl {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 100svh;
+}
+
+/* CSS fallback when WebGL is unavailable */
+html.no-webgl .webgl {
+  background:
+    radial-gradient(60% 50% at 50% 40%, rgba(203, 255, 77, 0.07), transparent 70%),
+    radial-gradient(80% 60% at 70% 70%, rgba(242, 242, 239, 0.04), transparent 70%);
+}
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 var(--gutter);
+}
+
+.hero__inner {
+  max-width: 100%;
+}
+
+.hero__label {
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: var(--space-md);
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-size: var(--step-5);
+  font-weight: 600;
+  line-height: 0.98;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+}
+
+.hero__line {
+  display: block;
+  overflow: hidden;
+}
+
+.hero__sub {
+  max-width: 32rem;
+  margin-top: var(--space-md);
+  color: var(--color-muted);
+  font-size: var(--step-0);
+}
+
+.hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
+
+.hero__hint {
+  position: absolute;
+  bottom: 2rem;
+  left: var(--gutter);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.hero__hint-line {
+  display: block;
+  width: 48px;
+  height: 1px;
+  background: var(--color-line);
+  overflow: hidden;
+  position: relative;
+}
+
+.hero__hint-line::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--color-accent);
+  transform: translateX(-100%);
+  animation: hint-sweep 2.2s var(--ease-out) infinite;
+}
+
+@keyframes hint-sweep {
+  0% { transform: translateX(-100%); }
+  60% { transform: translateX(0); }
+  100% { transform: translateX(100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__hint-line::after {
+    animation: none;
+  }
+}
+
+@media (max-height: 620px) {
+  .hero__hint {
+    display: none;
+  }
+}
