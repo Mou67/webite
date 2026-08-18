@@ -1,438 +1,282 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
-    <meta charset="UTF-8">    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mou67</title>    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/mobile-styles.css">
-    <link rel="stylesheet" href="assets/css/glass-effects.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Open Graph Meta Tags for Discord Embed -->
-    <meta property="og:title" content="Mou67 - Web Developer & Designer" />
-    <meta property="og:description" content="Modern, interactive, and user-friendly web experiences by Mou67." />
-    <meta property="og:image" content="https://mou67.com/assets/images/profile.png" />
-    <meta property="og:url" content="https://mou67.com/" />
-    <meta property="og:type" content="website" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mou67 — Hobby developer, open-source tools</title>
+  <meta name="description" content="Mou67 builds small Python tools that do one job properly — packaged, MIT-licensed and public on GitHub." />
+  <meta name="theme-color" content="#161826" />
+
+  <link rel="icon" type="image/png" href="/assets/img/logo.png" />
+  <link rel="apple-touch-icon" href="/assets/img/logo.png" />
+
+  <!-- Open Graph (Discord embed) -->
+  <meta property="og:title" content="Mou67 — Hobby developer, open-source tools" />
+  <meta property="og:description" content="Small Python tools that do one job properly. Public on GitHub, MIT-licensed." />
+  <meta property="og:image" content="https://mou67.com/assets/img/logo.png" />
+  <meta property="og:url" content="https://mou67.com/" />
+  <meta property="og:type" content="website" />
+
+  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/css/tokens.css" />
+  <link rel="stylesheet" href="/assets/css/base.css" />
+  <link rel="stylesheet" href="/assets/css/components.css" />
+  <link rel="stylesheet" href="/assets/css/sections.css" />
 </head>
 <body>
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
-    
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="logo">Mou67</div>
-        <div class="nav-links">
-            <a href="#home" class="nav-link">Home</a>
-            <a href="#about" class="nav-link">About Me</a>
-            <a href="#skills" class="nav-link">Skills</a>
-            <a href="#projects" class="nav-link">Projects</a>
-        </div>
-        <div class="menu-toggle">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </div>
-    </nav>
+  <a class="skip-link" href="#work">Skip to content</a>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1 class="glowing-text">Hello, I'm <span class="highlight">Mou67</span></h1>
-                <p class="subtitle">Austrian & passionate about front-end development in my free time</p>
-                <p class="description">I create modern, interactive, and user-friendly web experiences</p>
-                <div class="cta-buttons">
-                    <a href="#projects" class="btn primary-btn">My Work <i class="fas fa-arrow-right"></i></a>
-                    <a href="#contact" class="btn secondary-btn">Want to contact me? <i class="fas fa-envelope"></i></a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="image-container">
-                    <div class="glow-effect"></div>
-                    <img src="assets/images/profile.png" alt="Profile Picture">
-                </div>
-            </div>
+  <div class="glow" data-glow aria-hidden="true"></div>
+
+  <div class="page">
+    <header class="nav">
+      <nav class="nav__inner" aria-label="Primary">
+        <a class="nav__brand" href="#top">
+          <img class="nav__mark" src="/assets/img/logo.png" alt="" width="38" height="38" />
+          <span>Mou67</span>
+        </a>
+
+        <div class="nav__links" id="nav-links" data-nav-links>
+          <a class="nav__link" href="#work">Work</a>
+          <a class="nav__link" href="#about">About</a>
+          <a class="nav__link" href="#stack">Stack</a>
+          <a class="nav__link" href="#track">Track record</a>
         </div>
-        <div class="scroll-indicator">
-            <p>Scroll down</p>
-            <i class="fas fa-chevron-down"></i>
+
+        <a class="btn btn--soft nav__cta" href="https://github.com/Mou67" target="_blank" rel="noreferrer" data-magnetic="0.28">GitHub</a>
+
+        <button class="nav__toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="nav-links">
+          <span class="nav__toggle-icon"></span>
+          <span class="visually-hidden">Menu</span>
+        </button>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div>
+          <span class="hero__badge" data-reveal="0">
+            <span class="hero__dot" aria-hidden="true"></span>
+            Hobby projects · public on GitHub
+          </span>
+
+          <h1 class="hero__title" data-reveal="80">
+            <span>I build tools that</span>
+            <span>do one job, properly.</span>
+          </h1>
+
+          <p class="hero__text" data-reveal="160">
+            I'm Mou67 — a hobby programmer. I build things for myself, mostly small Python
+            tools that take over some task I got tired of doing by hand. When one of them
+            actually works, it goes public on GitHub.
+          </p>
+
+          <div class="hero__actions" data-reveal="240">
+            <a class="btn btn--primary" href="#work" data-magnetic="0.3">See the projects</a>
+            <a class="btn btn--ghost" href="https://github.com/Mou67" target="_blank" rel="noreferrer" data-magnetic="0.3">github.com/Mou67</a>
+          </div>
         </div>
-        <div class="grid-background"></div>
-    </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="section-header">
-            <h2>About <span class="highlight">Me</span></h2>
-            <div class="section-line"></div>
-        </div>        <div class="about-content">
-            <div class="about-text-center">
-                <p>Hi, I'm Mou67, nickname Mou, a hobbyist front-end developer. I also play games like Star Citizen and much more, and I enjoy watching anime.</p>
-            </div>
-            
-            <div class="about-cards">                <div class="about-card">
-                    <div class="orbit-trail"></div>
-                    <div class="card-content">
-                        <div class="card-icon"><i class="fas fa-code"></i></div>
-                        <h3>Web Development</h3>
-                        <p>Creating modern, responsive websites with the latest technologies</p>
-                    </div>
-                    <div class="card-hover-content">
-                        <h3>My Expertise</h3>
-                        <ul>
-                            <li><i class="fas fa-check"></i> HTML5 & CSS3</li>
-                            <li><i class="fas fa-check"></i> Responsive Design</li>
-                            <li><i class="fas fa-check"></i> JavaScript</li>
-                        </ul>
-                    </div>
-                </div>                <div class="about-card">
-                    <div class="orbit-trail"></div>
-                    <div class="card-content">
-                        <div class="card-icon"><i class="fas fa-paint-brush"></i></div>
-                        <h3>UI/UX Design</h3>
-                        <p>User-friendly and visually appealing design solutions</p>
-                    </div>
-                    <div class="card-hover-content">
-                        <h3>Design Tools</h3>
-                        <ul>
-                            <li><i class="fas fa-check"></i> Modern UI Elements</li>
-                            <li><i class="fas fa-check"></i> Intuitive Navigation</li>
-                            <li><i class="fas fa-check"></i> Visual Hierarchy</li>
-                        </ul>
-                    </div>
-                </div>                <div class="about-card">
-                    <div class="orbit-trail"></div>
-                    <div class="card-content">
-                        <div class="card-icon"><i class="fas fa-mobile-alt"></i></div>
-                        <h3>Mobile Optimization</h3>
-                        <p>Perfect display on all devices and screen sizes</p>
-                    </div>
-                    <div class="card-hover-content">
-                        <h3>Optimized for</h3>
-                        <ul>
-                            <li><i class="fas fa-check"></i> Smartphones & Tablets</li>
-                            <li><i class="fas fa-check"></i> Desktops & Notebooks</li>
-                            <li><i class="fas fa-check"></i> Various Browsers</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        <div class="hero__visual" data-reveal="300">
+          <div class="hero__card glass" data-tilt="7">
+            <img class="hero__logo" src="/assets/img/logo.png" alt="Mou67 logo" width="224" height="217" />
+          </div>
+          <div class="hero__orb" aria-hidden="true"></div>
         </div>
-    </section>
+      </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="section-header">
-            <h2>My <span class="highlight">Skills</span></h2>
-            <div class="section-line"></div>
+      <section class="stats" aria-label="At a glance">
+        <div class="container stats__grid">
+          <div class="stat">
+            <p class="stat__value">I dont have a Main language</p>
+            <p class="stat__label">Main language</p>
+          </div>
+          <div class="stat">
+            <p class="stat__value">.exe</p>
+            <p class="stat__label">Ships without setup</p>
+          </div>
+          <div class="stat">
+            <p class="stat__value">MIT</p>
+            <p class="stat__label">Open source</p>
+          </div>
+          <div class="stat">
+            <p class="stat__value">2</p>
+            <p class="stat__label">Public projects</p>
+          </div>
         </div>
-        <div class="skills-container">
-            <div class="skill-category">
-                <h3>Programming Languages</h3>
-                <div class="skill-items">
-                    <div class="skill-item">
-                        <div class="skill-icon"><i class="fab fa-html5"></i></div>
-                        <div class="skill-info">
-                            <h4>HTML5</h4>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 80%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon"><i class="fab fa-css3-alt"></i></div>
-                        <div class="skill-info">
-                            <h4>CSS3</h4>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 90%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon"><i class="fab fa-js"></i></div>
-                        <div class="skill-info">
-                            <h4>JavaScript</h4>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 65%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon"><i class="fab fa-js"></i></div>
-                        <div class="skill-info">
-                            <h4>Python</h4>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 60%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h3>Frameworks & Libraries</h3>
-                <div class="skill-items">
-                    <div class="skill-item">
-                        <div class="skill-icon"><i class="fab fa-react"></i></div>
-                        <div class="skill-info">
-                            <h4>React</h4>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 50%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon"><i class="fab fa-bootstrap"></i></div>
-                        <div class="skill-info">
-                            <h4>Bootstrap</h4>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 40%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h3>Tools & Technologies</h3>
-                <div class="skill-items">
-                    <div class="skill-item">
-                        <div class="skill-icon"><i class="fab fa-git-alt"></i></div>
-                        <div class="skill-info">
-                            <h4>Git</h4>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 10%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon"><i class="fab fa-figma"></i></div>
-                        <div class="skill-info">
-                            <h4>Figma</h4>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 20%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      </section>
+
+      <section class="section container" id="work">
+        <div class="section-head" data-reveal="0">
+          <h2 class="section-title">Selected work</h2>
+          <span class="eyebrow">Open source · MIT</span>
         </div>
-    </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="section-header">
-            <h2>My <span class="highlight">Work</span></h2>
-            <div class="section-line"></div>
+        <div class="work__grid">
+          <article class="project glass" data-reveal="60" data-tilt="5">
+            <div class="thumb">
+              <svg class="thumb__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 3v12" />
+                <path d="m7 10 5 5 5-5" />
+                <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
+              </svg>
+            </div>
+            <p class="project__kicker">Desktop app · Windows</p>
+            <h3 class="project__title">Patreon Audio Downloader</h3>
+            <p class="project__text">
+              Downloads Patreon content you have access to and converts it to MP3 — session-ID
+              login, output folder of your choice, live progress bar. Ships as a standalone
+              .exe: no Python install required.
+            </p>
+            <ul class="tags">
+              <li class="tag">Python 3.13</li>
+              <li class="tag">tkinter</li>
+              <li class="tag">yt-dlp</li>
+              <li class="tag">FFmpeg</li>
+              <li class="tag">PyInstaller</li>
+            </ul>
+            <div class="project__links">
+              <a class="btn btn--soft" href="https://github.com/Mou67/Patreon-Downloader" target="_blank" rel="noreferrer" data-magnetic="0.25">View repository →</a>
+            </div>
+          </article>
+
+          <article class="project glass" data-reveal="140" data-tilt="5">
+            <div class="thumb">
+              <svg class="thumb__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="3" />
+                <path d="M12 3a9 9 0 0 1 9 9" />
+                <path d="M12 7a5 5 0 0 1 5 5" />
+                <path d="M3 20h18" />
+              </svg>
+            </div>
+            <p class="project__kicker">Monitoring · Tooling</p>
+            <h3 class="project__title">SpecterMonitor</h3>
+            <p class="project__text">
+              A monitoring tool for keeping an eye on things that shouldn't be watched by hand —
+              it runs in the background and says something when the state changes.
+            </p>
+            <ul class="tags">
+              <li class="tag">Python</li>
+              <li class="tag">Automation</li>
+            </ul>
+            <div class="project__links">
+              <a class="btn btn--soft" href="https://github.com/Mou67/SpecterMonitor" target="_blank" rel="noreferrer" data-magnetic="0.25">View repository →</a>
+            </div>
+          </article>
         </div>
-        <div class="projects-container">
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="assets/images/user_finder.png" alt="Project 1" loading="lazy">
-                    <div class="project-overlay">
-                        <div class="project-buttons">
-                            <a href="https://mou67.github.io/userfinder/" class="project-btn" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                            <a href="https://github.com/Mou67/userfinder" class="project-btn" target="_blank">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-info">
-                    <h3>User Finder</h3>
-                    <p>A professional Open Source Intelligence (OSINT) tool for searching usernames and profiles across the internet.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">JavaScript</span>
-                    </div>
-                </div>
-                <div class="project-preview">
-                    <img src="assets/images/user_finder.png" alt="Portfolio Website Preview">
-                </div>
-            </div>
+      </section>
 
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="assets/images/logger.png" alt="Project 1" loading="lazy">
-                    <div class="project-overlay">
-                        <div class="project-buttons">
-                            <a href="https://mou67.github.io/website_test/" class="project-btn" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-info">
-                    <h3>Just some shit i tested</h3>
-                    <p>just an website where google logs all you data welcome to the internet</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">JavaScript</span>
-                    </div>
-                </div>
-                <div class="project-preview">
-                    <img src="assets/images/project2-preview.jpg" alt="E-Commerce Dashboard Preview">
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="assets/images/old_website.png" alt="Project 3" loading="lazy">
-                    <div class="project-overlay">
-                        <div class="project-buttons">
-                            <a href="https://mou67.github.io/odl_website/" class="project-btn" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-info">
-                    <h3>my old website</h3>
-                    <p>i dont know what to say more then it was a pain to make this in my time</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">JavaScript</span>
-                    </div>
-                </div>
-                <div class="project-preview">
-                    <img src="assets/images/project3-preview.jpg" alt="Weather App Preview">
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="assets/images/project4.jpg" alt="Project 4" loading="lazy">
-                    <div class="project-overlay">
-                        <div class="project-buttons">
-                            <a href="#" class="project-btn" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                            <a href="#" class="project-btn" target="_blank">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-info">
-                    <h3>In Progress</h3>
-                    <p>. . .</p>
-                    <div class="project-tech">
-                        <span class="tech-tag"></span>
-                        <span class="tech-tag"></span>
-                        <span class="tech-tag"></span>
-                        <span class="tech-tag"></span>
-                    </div>
-                </div>
-                <div class="project-preview">
-                    <img src="assets/images/project4-preview.jpg" alt="Task Manager Preview">
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="assets/images/project5.jpg" alt="Project 5" loading="lazy">
-                    <div class="project-overlay">
-                        <div class="project-buttons">
-                            <a href="#" class="project-btn" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                            <a href="#" class="project-btn" target="_blank">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-info">
-                    <h3>In Progress</h3>
-                    <p>. . .</p>
-                    <div class="project-tech">
-                        <span class="tech-tag"></span>
-                        <span class="tech-tag"></span>
-                        <span class="tech-tag"></span>
-                        <span class="tech-tag"></span>
-                    </div>
-                </div>
-                <div class="project-preview">
-                    <img src="assets/images/project5-preview.jpg" alt="Restaurant Website Preview">
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="assets/images/project6.jpg" alt="Project 6" loading="lazy">
-                    <div class="project-overlay">
-                        <div class="project-buttons">
-                            <a href="#" class="project-btn" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                            <a href="#" class="project-btn" target="_blank">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-info">
-                    <h3>In Progress</h3>
-                    <p>. . .</p>
-                    <div class="project-tech">
-                        <span class="tech-tag"></span>
-                        <span class="tech-tag"></span>
-                        <span class="tech-tag"></span>
-                        <span class="tech-tag"></span>
-                    </div>
-                </div>
-                <div class="project-preview">
-                    <img src="assets/images/project6-preview.jpg" alt="Music Player Preview">
-                </div>
-            </div>
+      <section class="section container about" id="about">
+        <div data-reveal="0">
+          <h2 class="section-title">How I work</h2>
+          <p class="about__lead">
+            No clients, no deadlines — just problems of my own that were worth an evening of
+            code. I only publish the ones I still use myself.
+          </p>
         </div>
-    </section>
 
-    <!-- Discord Popup -->
-    <div id="discordPopup" class="discord-popup">
-        <div class="discord-popup-content">
-            <div class="discord-close-btn">&times;</div>
-            <div class="discord-header">
-                <h3>Discord Contact</h3>
-            </div>
-            <div class="discord-profile">
-                <div class="discord-avatar-container">
-                    <img src="assets/images/profile.png" alt="Discord Profile Picture" class="discord-avatar">
-                    <div class="discord-status"></div>
-                </div>
-                <div class="discord-info">
-                    <h4>Mou67</h4>
-                    <p>Click on my profile picture to join my Discord server!</p>
-                </div>
-            </div>
+        <div class="about__steps" data-reveal="80">
+          <div class="step">
+            <span class="step__num">01</span>
+            <h3 class="step__title">Scratch my own itch</h3>
+            <p class="step__text">
+              Every tool starts as something I personally needed. One clear job per project,
+              nothing added to look impressive.
+            </p>
+          </div>
+          <div class="step">
+            <span class="step__num">02</span>
+            <h3 class="step__title">Make it survive a stranger</h3>
+            <p class="step__text">
+              Real error messages, a progress bar you can trust, and a README that answers the
+              questions people actually hit.
+            </p>
+          </div>
+          <div class="step">
+            <span class="step__num">03</span>
+            <h3 class="step__title">Put it on GitHub</h3>
+            <p class="step__text">
+              Packaged, MIT-licensed, pushed public. If it helped me, it might help someone
+              else — and I learn more from shipping than from a folder on my drive.
+            </p>
+          </div>
         </div>
-    </div>
+      </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-logo">
-                <h3>Mou67</h3>
-                <p>Web Developer & Designer</p>
-            </div>
-            <div class="footer-links">
-                <div class="footer-nav">
-                    <h4>Navigation</h4>
-                    <a href="#home">Home</a>
-                    <a href="#about">About Me</a>
-                    <a href="#skills">Skills</a>
-                </div>
-            </div>
+      <section class="section container" id="stack" data-reveal="0">
+        <h2 class="section-title stack__title">Stack &amp; tools</h2>
+        <ul class="chips">
+          <li class="chip">Python</li>
+          <li class="chip">tkinter</li>
+          <li class="chip">yt-dlp</li>
+          <li class="chip">FFmpeg</li>
+          <li class="chip">PyInstaller</li>
+          <li class="chip">Git &amp; GitHub</li>
+          <li class="chip">Windows scripting</li>
+          <li class="chip">REST APIs</li>
+        </ul>
+      </section>
+
+      <section class="section container" id="track">
+        <h2 class="section-title track__title" data-reveal="0">Track record</h2>
+
+        <div class="track__row" data-reveal="40">
+          <span class="track__when">2025 — now</span>
+          <div>
+            <h3 class="track__heading">Patreon Audio Downloader — v1.0.0 released</h3>
+            <p class="track__text">
+              Built it in my spare time, on my own: yt-dlp pipeline, FFmpeg conversion, tkinter
+              interface, cookie-based auth, and a PyInstaller build script that turns it into
+              one distributable executable.
+            </p>
+          </div>
         </div>
-    </footer>    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
-    <script src="assets/js/script.js"></script>
-    <script src="assets/js/mobile-interactions.js"></script>
+
+        <div class="track__row" data-reveal="100">
+          <span class="track__when">2025</span>
+          <div>
+            <h3 class="track__heading">SpecterMonitor — monitoring, automated</h3>
+            <p class="track__text">
+              Second project I put online — same principle: small scope, something I actually
+              use, MIT license.
+            </p>
+          </div>
+        </div>
+
+        <div class="track__row track__row--next" data-reveal="160">
+          <span class="track__when">Next</span>
+          <div>
+            <h3 class="track__heading">Next project</h3>
+            <p class="track__text">
+              Whatever annoys me next. When it works and survives a stranger, it lands here.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section container" id="contact">
+        <div class="contact__card glass" data-reveal="0" data-tilt="3">
+          <div class="contact__orb" aria-hidden="true"></div>
+          <h2 class="contact__title">Everything here is free to take.</h2>
+          <p class="contact__text">
+            All code is public and MIT-licensed — clone it, fork it, break it. Found a bug or
+            have an idea? Open an issue; that's the easiest way to reach me.
+          </p>
+          <div class="contact__actions">
+            <a class="btn btn--primary" href="https://github.com/Mou67" target="_blank" rel="noreferrer" data-magnetic="0.3">github.com/Mou67</a>
+            <a class="btn btn--ghost" href="https://github.com/Mou67/Patreon-Downloader/issues" target="_blank" rel="noreferrer" data-magnetic="0.3">Open an issue</a>
+            <a class="btn btn--ghost" href="https://discord.com/users/566339117466517505" target="_blank" rel="noreferrer" data-magnetic="0.3">Discord</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer container">
+      <span>© 2026 Mou67</span>
+      <span>Code under MIT · built in Austria</span>
+    </footer>
+  </div>
+
+  <script src="/assets/js/main.js" defer></script>
 </body>
 </html>

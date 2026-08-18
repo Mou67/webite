@@ -1,0 +1,224 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* the sticky nav must not cover the heading we jump to */
+  scroll-padding-top: 96px;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: clip;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text);
+  text-wrap: pretty;
+  -webkit-font-smoothing: antialiased;
+  background:
+    radial-gradient(1100px 680px at 84% -180px, color-mix(in srgb, var(--color-accent-900) 80%, transparent), transparent 62%),
+    radial-gradient(900px 700px at -8% 105%, color-mix(in srgb, black 34%, transparent), transparent 58%),
+    var(--color-bg);
+  background-attachment: fixed;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  letter-spacing: -0.015em;
+}
+
+p {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-accent-300);
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-accent) 30%, transparent);
+}
+
+/* Keyboard users keep a visible ring; pointer clicks do not draw one */
+:focus-visible {
+  outline: 2px solid var(--color-accent-300);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 100;
+  padding: 10px 18px;
+  border-radius: 999px;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--glass-border);
+  transform: translateY(-180%);
+  transition: transform 200ms var(--ease-out);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+/* ── Layout primitives ─────────────────────────────────────────── */
+
+.page {
+  position: relative;
+  z-index: 1;
+}
+
+.container {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-top: clamp(64px, 10vh, 104px);
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.section-title {
+  font-size: clamp(28px, 3.4vw, 40px);
+  line-height: 1.15;
+}
+
+.eyebrow {
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+/* ── Glass surface ─────────────────────────────────────────────── */
+
+.glass {
+  background: var(--glass-fill);
+  backdrop-filter: blur(var(--blur)) saturate(170%);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(170%);
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    var(--glass-hairline),
+    0 18px 44px color-mix(in srgb, black 34%, transparent);
+}
+
+/* ── Scroll reveal ─────────────────────────────────────────────── */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity var(--reveal-duration) ease,
+    transform var(--reveal-duration) var(--ease-out);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Nothing may stay invisible if JS never runs */
+.no-js [data-reveal] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Cursor-following accent glow — enabled by JS on fine pointers only */
+.glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 560px;
+  height: 560px;
+  margin: -280px 0 0 -280px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  mix-blend-mode: screen;
+  filter: blur(24px);
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-accent) 34%, transparent), transparent 62%);
+  transition: opacity 400ms ease;
+}
+
+.glow.is-active {
+  opacity: 0.5;
+}
+
+/* ── Footer ───────────────────────────────────────────────────── */
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding-top: 8px;
+  padding-bottom: 56px;
+  font-size: 13px;
+  color: color-mix(in srgb, var(--color-text) 52%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .glow {
+    display: none;
+  }
+}

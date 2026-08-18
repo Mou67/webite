@@ -1,0 +1,72 @@
+/* Nocturne — design tokens. Single source of truth for palette, type and
+   spacing. Retune here, never inside a component. */
+
+/* Inter (variable, 400-700), self-hosted. Only the two Latin subsets ship:
+   the page text needs `latin`, and `latin-ext` is kept so German copy with
+   umlauts stays in Inter. Neither is downloaded unless a glyph in its
+   unicode-range actually appears. */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../fonts/inter-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../fonts/inter-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0,
+    U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+:root {
+  /* Ground & ink */
+  --color-bg: #161826;
+  --color-surface: #232532;
+  --color-text: #e9e9ed;
+
+  /* Accent — blurple, OKLCH hue 289.2 */
+  --color-accent: #9184d9;
+  --color-accent-300: #d2cefd;
+  --color-accent-900: #2b2741;
+
+  /* Neutral ramp, top step. Every glass mix is derived from this. */
+  --color-neutral-100: #f3f5fe;
+
+  /* Saturated deep indigo band behind the stats strip */
+  --color-section: #262a60;
+  --color-section-glow: #353b80;
+
+  /* Type */
+  --font-heading: 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-heading-weight: 500;
+
+  /* Liquid-glass blur strength — subtle 10px / strong 22px / max 40px */
+  --blur: 22px;
+
+  /* Layout */
+  --container: 1180px;
+  --gutter: clamp(20px, 5vw, 56px);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --reveal-duration: 700ms;
+
+  /* Recurring glass mixes, so components stay declarative */
+  --glass-border: color-mix(in srgb, var(--color-neutral-100) 13%, transparent);
+  --glass-hairline: inset 0 1px 0 color-mix(in srgb, var(--color-neutral-100) 20%, transparent);
+  --glass-fill: linear-gradient(
+    150deg,
+    color-mix(in srgb, var(--color-neutral-100) 11%, transparent),
+    color-mix(in srgb, var(--color-neutral-100) 2%, transparent)
+  );
+}
