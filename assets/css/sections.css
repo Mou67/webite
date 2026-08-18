@@ -1,0 +1,396 @@
+/* ── Hero ─────────────────────────────────────────────────────── */
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: center;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding: clamp(48px, 9vh, 104px) var(--gutter) 72px;
+}
+
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  padding: 7px 14px 7px 12px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--color-accent) 34%, transparent);
+  background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+}
+
+.hero__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 12px var(--color-accent);
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  /* sized so the longer second line still sits on one row */
+  font-size: clamp(38px, 5.4vw, 72px);
+  line-height: 1.1;
+  letter-spacing: 0;
+  margin: 26px 0 0;
+}
+
+.hero__title span {
+  display: block;
+}
+
+.hero__text {
+  font-size: 17px;
+  line-height: 1.65;
+  max-width: 52ch;
+  margin-top: 26px;
+  color: color-mix(in srgb, var(--color-text) 80%, transparent);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 34px;
+}
+
+.hero__visual {
+  position: relative;
+}
+
+.hero__card {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1 / 1;
+  padding: 40px;
+  border-radius: 32px;
+  transform-style: preserve-3d;
+  transition: transform 300ms var(--ease-out);
+  box-shadow:
+    var(--glass-hairline),
+    0 30px 70px color-mix(in srgb, black 46%, transparent);
+}
+
+.hero__logo {
+  width: 78%;
+  max-width: 300px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 28px color-mix(in srgb, var(--color-accent) 45%, transparent));
+}
+
+.hero__orb {
+  position: absolute;
+  inset: -26px -26px auto auto;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(18px);
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-accent) 55%, transparent), transparent 68%);
+  animation: hero-float 7s ease-in-out infinite;
+}
+
+@keyframes hero-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -14px, 0);
+  }
+}
+
+/* ── Stats band ───────────────────────────────────────────────── */
+
+.stats {
+  padding: 46px 0;
+  background:
+    radial-gradient(900px 400px at 86% -30%, color-mix(in srgb, var(--color-section-glow) 70%, transparent), transparent 64%),
+    var(--color-section);
+}
+
+.stats__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px;
+}
+
+/* Each column is a full-height box so the labels line up across the row
+   even when one value wraps to two lines. */
+.stat {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.stat__value {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.15;
+  /* long values must wrap inside their column instead of stretching it */
+  text-wrap: balance;
+  overflow-wrap: break-word;
+  font-feature-settings: 'tnum' 1;
+}
+
+.stat__label {
+  font-size: 12.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top: auto;
+  padding-top: 10px;
+  color: color-mix(in srgb, var(--color-text) 66%, transparent);
+}
+
+/* ── Work ─────────────────────────────────────────────────────── */
+
+.work__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.project {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 24px;
+  transform-style: preserve-3d;
+}
+
+.project__kicker {
+  font-size: 12.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-top: 20px;
+}
+
+.project__title {
+  font-size: 22px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin-top: 10px;
+}
+
+.project__text {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-top: 10px;
+  color: color-mix(in srgb, var(--color-text) 76%, transparent);
+}
+
+/* Actions sit at the bottom so cards in a row line up */
+.project__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+/* ── About ────────────────────────────────────────────────────── */
+
+.about {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(28px, 5vw, 72px);
+}
+
+.about__lead {
+  font-size: 15.5px;
+  line-height: 1.7;
+  max-width: 44ch;
+  margin-top: 20px;
+  color: color-mix(in srgb, var(--color-text) 78%, transparent);
+}
+
+.about__steps {
+  display: grid;
+  gap: 14px;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 8px 20px;
+  align-items: baseline;
+  padding: 20px 22px;
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--color-neutral-100) 6%, transparent);
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+  border: 1px solid color-mix(in srgb, var(--color-neutral-100) 10%, transparent);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-neutral-100) 14%, transparent);
+}
+
+.step__num {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  color: var(--color-accent);
+  font-feature-settings: 'tnum' 1;
+}
+
+.step__title {
+  font-size: 19px;
+  letter-spacing: -0.01em;
+}
+
+.step__text {
+  grid-column: 2;
+  font-size: 15px;
+  line-height: 1.6;
+  color: color-mix(in srgb, var(--color-text) 74%, transparent);
+}
+
+/* ── Stack ────────────────────────────────────────────────────── */
+
+.stack__title {
+  margin-bottom: 28px;
+}
+
+/* ── Track record ─────────────────────────────────────────────── */
+
+.track__title {
+  margin-bottom: 36px;
+}
+
+.track__row {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 8px 32px;
+  padding: 26px 0;
+  border-top: 1px solid color-mix(in srgb, var(--color-neutral-100) 10%, transparent);
+}
+
+.track__row:last-of-type {
+  border-bottom: 1px solid color-mix(in srgb, var(--color-neutral-100) 10%, transparent);
+}
+
+.track__when {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--color-accent);
+  font-feature-settings: 'tnum' 1;
+}
+
+.track__heading {
+  font-size: 20px;
+  letter-spacing: -0.01em;
+}
+
+.track__text {
+  font-size: 15px;
+  line-height: 1.65;
+  max-width: 62ch;
+  margin-top: 10px;
+  color: color-mix(in srgb, var(--color-text) 74%, transparent);
+}
+
+/* The open-ended last row reads one step quieter */
+.track__row--next .track__heading {
+  color: color-mix(in srgb, var(--color-text) 70%, transparent);
+}
+
+.track__row--next .track__text {
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+}
+
+/* ── Contact ──────────────────────────────────────────────────── */
+
+.contact__card {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(28px, 5vw, 56px);
+  border-radius: 28px;
+  transform-style: preserve-3d;
+  transition: transform 300ms var(--ease-out);
+  box-shadow:
+    var(--glass-hairline),
+    0 24px 60px color-mix(in srgb, black 40%, transparent);
+}
+
+.contact__orb {
+  position: absolute;
+  inset: auto -60px -120px auto;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(30px);
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-accent) 38%, transparent), transparent 66%);
+}
+
+.contact__title {
+  position: relative;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(30px, 3.8vw, 48px);
+  line-height: 1.14;
+  letter-spacing: 0;
+  max-width: 24ch;
+}
+
+.contact__text {
+  position: relative;
+  font-size: 16px;
+  line-height: 1.65;
+  max-width: 48ch;
+  margin-top: 22px;
+  color: color-mix(in srgb, var(--color-text) 80%, transparent);
+}
+
+.contact__actions {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+/* ── Responsive ───────────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    padding-bottom: 56px;
+  }
+
+  .hero__visual {
+    order: -1;
+    max-width: 320px;
+  }
+
+  .stats__grid {
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: start;
+    gap: 28px 20px;
+  }
+}
+
+@media (max-width: 860px) {
+  .about {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .track__row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+}
