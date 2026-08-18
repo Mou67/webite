@@ -192,8 +192,7 @@
   color: var(--color-text);
   transition:
     background 260ms ease,
-    box-shadow 260ms ease,
-    transform 220ms var(--ease-out);
+    box-shadow 260ms ease;
 }
 
 .btn:hover {
