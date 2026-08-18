@@ -82,10 +82,9 @@
     setTimeout(sweep, 2500);
   }
 
-  /* ── Cursor glow + magnetic buttons ─────────────────────────── */
+  /* ── Cursor glow ────────────────────────────────────────────── */
 
   var glow = document.querySelector('[data-glow]');
-  var magnet = null;
 
   if (motion) {
     if (glow) glow.classList.add('is-active');
@@ -97,30 +96,9 @@
           glow.style.transform =
             'translate3d(' + event.clientX + 'px,' + event.clientY + 'px,0)';
         }
-
-        if (magnet) {
-          var rect = magnet.el.getBoundingClientRect();
-          var dx = (event.clientX - (rect.left + rect.width / 2)) * magnet.k;
-          var dy = (event.clientY - (rect.top + rect.height / 2)) * magnet.k;
-          magnet.el.style.transform =
-            'translate3d(' + dx.toFixed(2) + 'px,' + dy.toFixed(2) + 'px,0) scale(1.03)';
-        }
       },
       { passive: true }
     );
-
-    document.querySelectorAll('[data-magnetic]').forEach(function (el) {
-      var k = parseFloat(el.getAttribute('data-magnetic')) || 0.25;
-
-      el.addEventListener('pointerenter', function () {
-        magnet = { el: el, k: k };
-      });
-
-      el.addEventListener('pointerleave', function () {
-        magnet = null;
-        el.style.transform = 'translate3d(0,0,0) scale(1)';
-      });
-    });
 
     /* ── Tilt cards ───────────────────────────────────────────── */
 
