@@ -35,13 +35,12 @@
 }
 
 .hero__title {
-  font-family: var(--font-display);
-  font-weight: 400;
-  /* sized so the longer second line still sits on one row */
-  font-size: clamp(38px, 5.4vw, 72px);
-  line-height: 1.1;
-  letter-spacing: 0;
-  margin: 26px 0 0;
+  /* Capped at 62px: that is the largest size at which the longer line
+     still fits the 584px text column, so each line stays one row. */
+  font-size: clamp(34px, 4.6vw, 62px);
+  line-height: 1.06;
+  letter-spacing: -0.022em;
+  margin: 26px 0 0 -0.06em;
 }
 
 .hero__title span {
@@ -134,10 +133,10 @@
 }
 
 .stat__value {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(28px, 3vw, 40px);
-  line-height: 1.15;
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: clamp(32px, 3.4vw, 48px);
+  line-height: 1.1;
   /* long values must wrap inside their column instead of stretching it */
   text-wrap: balance;
   overflow-wrap: break-word;
@@ -337,11 +336,9 @@
 
 .contact__title {
   position: relative;
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(30px, 3.8vw, 48px);
-  line-height: 1.14;
-  letter-spacing: 0;
+  font-size: clamp(28px, 3.6vw, 44px);
+  line-height: 1.12;
+  letter-spacing: -0.018em;
   max-width: 24ch;
 }
 

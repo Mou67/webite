@@ -27,18 +27,6 @@
     U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
-/* Victory Striker Sans (demo) — display face for headlines only.
-   Basic Latin + symbols, no accented glyphs, so anything with an umlaut
-   falls back to Inter per glyph. Licence: personal use, see
-   victory-striker-sans-LICENSE.txt next to the font file. */
-@font-face {
-  font-family: 'Victory Striker Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('../fonts/victory-striker-sans.otf') format('opentype');
-}
-
 :root {
   /* Ground & ink */
   --color-bg: #161826;
@@ -57,9 +45,7 @@
   --color-section: #262a60;
   --color-section-glow: #353b80;
 
-  /* Type — Inter carries everything, the display face only the big
-     statements (hero, section titles, stat figures, wordmark). */
-  --font-display: 'Victory Striker Sans', 'Inter', system-ui, sans-serif;
+  /* Type */
   --font-heading: 'Inter', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
   --font-heading-weight: 500;
